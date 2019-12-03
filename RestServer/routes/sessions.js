@@ -3,7 +3,7 @@ var router = express.Router();
 
 let idCounter = 1;
 
-const emps = [
+const sessions = [
     {id:idCounter++, fname:'Filip', lname:'Jatelnicki',bonus:3,contract:'service' },
     {id:idCounter++, fname:'Jakub', lname:'Dzieciatko',bonus:4,contract:'normal' },
     {id:idCounter++, fname:'Pawel', lname:'Kalbarczyk',bonus:5,contract:'B2B' },
@@ -12,7 +12,7 @@ const emps = [
 ];
 
 router.get('/getAll', (req, res, next) => {
-    res.send(emps);
+    res.send(sessions);
 });
 
 router.get('/getById', (req, res, next) => {
