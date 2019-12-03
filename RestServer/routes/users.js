@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-let idCounter = 1;
+let idCounter = 5;
 
 const users = [
   {id:idCounter++ ,fname:'Adam', lname:'Gnatowski', password:'haslo123', email:'gnato@gmail.com', login:'agnato'},
@@ -39,7 +39,7 @@ router.put('/createUser', function(req, res, next){
 
   users.push({id:idCounter++,fname: fname,lname: lname,password: password,email: email,login: login});
 
-  res.sendStatus(201).send('Utworzono');
+  res.sendStatus(201).send('Utwo')
 
 });
 
