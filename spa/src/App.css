@@ -1,22 +1,16 @@
-.App {
-  text-align: center;
+.nav-menu ul {
+    list-style: none;
 }
 
-.App-logo {
-  height: 40vmin;
+.nav-menu ul {
+    display: flex;
+    justify-content: space-around;
+    font-size: 3vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+.main-title {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 4vh;
 }
