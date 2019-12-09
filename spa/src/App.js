@@ -1,14 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import NavPanel from './navPanel';
+import TopPanel from './topPanel';
+import './main_style.css';
+import BottomPanel from './bottomPanel';
 
 class AppComponent extends React.Component {
-  render() {
-    return (
-        <NavPanel name='dupa' />
-    );
-  };
+
+    render(){
+        return (
+            <div className='app'>
+                <TopPanel />
+                <BottomPanel />
+            </div>
+        );
+    };
 }
 
 export default AppComponent;
