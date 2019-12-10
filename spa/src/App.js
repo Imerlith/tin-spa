@@ -8,7 +8,7 @@ class AppComponent extends React.Component {
     render(){
         return (
             <div className='app'>
-                <TopPanel />
+                <TopPanel isLoggedIn = {true}/>
                 <BottomPanel />
             </div>
         );

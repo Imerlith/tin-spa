@@ -3,13 +3,13 @@ body {
     margin: 0;
     width: 100vw;
     height:100vh;
+    font-family: 'Fredoka One', cursive;
 }
 
 .top-panel {
     width: 100vw;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -21,13 +21,23 @@ body {
 }
 
 .top-panel h1 {
-    font-size: 3.4vw;
+    font-size: 3vw;
 }
 
 .nav-links {
     background: gray;
     border-radius: 25px;
-    width: 98vw;
+    width: 70vw;
+    margin: 10px;
 }
 
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
 
