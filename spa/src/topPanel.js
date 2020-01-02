@@ -24,6 +24,29 @@ class NavbarComponent extends React.Component {
         this.state = {
             isLoggedIn: props.isLoggedIn,
         }
+        this.handlePricesClick = this.handlePricesClick.bind(this);
+        this.handleAStationsClick = this.handleAStationsClick.bind(this);
+        this.handleAboutClick = this.handleAboutClick.bind(this);
+        this.handleLoginClick = this.handleLoginClick.bind(this);
+    }
+
+    handlePricesClick(e) {
+        console.log('prices');
+    }
+
+    handleAStationsClick(e) {
+        console.log('aprices');
+    }
+
+    handleAboutClick(e) {
+        console.log('about');
+    }
+
+    handleLoginClick(e) {
+        console.log('login');
+        this.setState(state => ({
+            isLoggedIn: !state.isLoggedIn
+        }));
     }
 
     render(){
@@ -32,10 +55,10 @@ class NavbarComponent extends React.Component {
         return(
             <div className="nav-links">
                 <ul>
-                    <li>Prices</li>
-                    <li>Avaliable Stations</li>
-                    <li>About us</li>
-                    <li>{logButton}</li>
+                    <li onClick={this.handlePricesClick}>Prices</li>
+                    <li onClick={this.handleAStationsClick}>Avaliable Stations</li>
+                    <li onClick={this.handleAboutClick}>About us</li>
+                    <li onClick={this.handleLoginClick}>{logButton}</li>
                 </ul>
             </div>
         );

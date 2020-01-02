@@ -4,12 +4,15 @@ import React from 'react';
 class PricesComponent extends React.Component {
     render() {
         return (
-            <div class ="pr-table">
+            <div className="pr-table">
                 <table >
+                    <thead>
                         <tr>
                             <th>Name</th>
                             <th>Price</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         <tr>
                             <td>Hour on Station</td>
                             <td>120 USD</td>
@@ -34,7 +37,8 @@ class PricesComponent extends React.Component {
                             <td>Water</td>
                             <td>2 USD</td>
                         </tr>
-                   </table>
+                    </tbody>
+                </table>
             </div>
         );
     };

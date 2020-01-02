@@ -28,6 +28,11 @@ body, html, #root, .app {
     font-size: 2.5vh;
 }
 
+.nav-links li:hover{
+    color: red;
+    cursor: pointer;
+}
+
 .top-panel h1 {
     font-size: 3vw;
 }
