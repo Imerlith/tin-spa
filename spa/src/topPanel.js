@@ -6,12 +6,18 @@ class TopPanelComponent extends React.Component {
         this.state = {
             isLoggedIn : props.isLoggedIn,
         }
+        this.handleParentUpdate = this.handleParentUpdate.bind(this);
     }
+
+    handleParentUpdate(name) {
+        this.props.handleUpdate(name);
+    }
+
     render() {
         return (
             <div className='top-panel'>
                 <h1>XxX_G4m3r$_D3nn_XxX</h1>
-                <NavbarComponent isLoggedIn = {this.state.isLoggedIn}/>
+                <NavbarComponent isLoggedIn = {this.state.isLoggedIn} onUpdate = {this.handleParentUpdate}/>
                 <HamburgerMenuComponent isLoggedIn = {this.state.isLoggedIn} />
             </div>
         );
@@ -32,14 +38,17 @@ class NavbarComponent extends React.Component {
 
     handlePricesClick(e) {
         console.log('prices');
+        this.props.onUpdate('prices');
     }
 
     handleAStationsClick(e) {
         console.log('aprices');
+        this.props.onUpdate('astations');
     }
 
     handleAboutClick(e) {
         console.log('about');
+        this.props.onUpdate('about');
     }
 
     handleLoginClick(e) {
@@ -47,6 +56,7 @@ class NavbarComponent extends React.Component {
         this.setState(state => ({
             isLoggedIn: !state.isLoggedIn
         }));
+        this.props.onUpdate('login');
     }
 
     render(){
