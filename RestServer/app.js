@@ -30,6 +30,12 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+const db = require('./config/database');
+
+db.authenticate()
+  .then(()=> console.log('DB connected'))
+  .catch(err => console.log('error '+err))
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

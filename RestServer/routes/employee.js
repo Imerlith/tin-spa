@@ -1,18 +1,25 @@
 var express = require('express');
 var router = express.Router();
+const db = require('../config/database');
+const Emp = require('../models/Employee');
 
 let idCounter = 1;
 
-const emps = [
-    {id:idCounter++, fname:'Filip', lname:'Jatelnicki',bonus:3,contract:'service' },
-    {id:idCounter++, fname:'Jakub', lname:'Dzieciatko',bonus:4,contract:'normal' },
-    {id:idCounter++, fname:'Pawel', lname:'Kalbarczyk',bonus:5,contract:'B2B' },
-    {id:idCounter++, fname:'Wojciech', lname:'Szadurski',bonus:0,contract:'trash' },
-    {id:idCounter++, fname:'Wiktor', lname:'Androsiuk',bonus:6,contract:'service' }
-];
+// const emps = [
+//     {id:idCounter++, fname:'Filip', lname:'Jatelnicki',bonus:3,contract:'service' },
+//     {id:idCounter++, fname:'Jakub', lname:'Dzieciatko',bonus:4,contract:'normal' },
+//     {id:idCounter++, fname:'Pawel', lname:'Kalbarczyk',bonus:5,contract:'B2B' },
+//     {id:idCounter++, fname:'Wojciech', lname:'Szadurski',bonus:0,contract:'trash' },
+//     {id:idCounter++, fname:'Wiktor', lname:'Androsiuk',bonus:6,contract:'service' }
+// ];
 
 router.get('/getAll', (req, res, next) => {
-    res.send(emps);
+   Emp.findAll()
+        .then(emps => {
+            console.log(emps);
+            res.status(200).send(emps);
+        })
+        .catch(err => console.log('err: '+ err))
 });
 
 router.get('/getById', (req, res, next) => {

@@ -1,24 +1,25 @@
-import { Sequelize, Model } from 'sequelize';
+const Sequelize = require('sequelize');
+const db = require('../config/database');
 
-class Employee extends Model{}
-Employee.init({
-    firstName: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    lastName: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    bonus: {
+const Employee = db.define('Employee', {
+    employee_id: {
         type: Sequelize.INTEGER,
-        allowNull: true
+        primaryKey: true
     },
-    contractType: {
-        type: Sequelize.STRING,
-        allowNull: false
+    First_Name: {
+        type: Sequelize.STRING
+    },
+    Last_Name: {
+        type: Sequelize.STRING
+    },
+    Birthday: {
+        type: Sequelize.DATE
+    },
+    Contract_type: {
+        type: Sequelize.STRING
     }
 }, {
-    sequelize,
-    modelName : 'Employee'
+    timestamps: false,
 });
+
+module.exports = Employee;
