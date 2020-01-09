@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const Employee = db.define('Employee', {
-    employee_id: {
+const Client = db.define('Clients', {
+    Client_Id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -13,19 +13,19 @@ const Employee = db.define('Employee', {
     Last_Name: {
         type: Sequelize.STRING
     },
-    Bonus: {
-        type:Sequelize.INTEGER,
-        default:0
+    Last_Visit_Date: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
     },
     Birthday: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
     },
-    Contract_type: {
+    Favourite_Game: {
         type: Sequelize.STRING
     }
 }, {
     timestamps: false,
 });
 
-module.exports = Employee;
+module.exports = Client;

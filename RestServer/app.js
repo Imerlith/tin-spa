@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var clientRouter = require('./routes/client');
 var empRouter = require('./routes/employee');
 var sessionsRouter = require('./routes/sessions');
 const Sequilize = require('sequelize');
@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/users', usersRouter);
+app.use('/client', clientRouter);
 app.use('/emp', empRouter);
 app.use('/sessions', sessionsRouter);
 
