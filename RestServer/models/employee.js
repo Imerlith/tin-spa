@@ -4,7 +4,8 @@ const db = require('../config/database');
 const Employee = db.define('Employee', {
     employee_id: {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true 
     },
     First_Name: {
         type: Sequelize.STRING
@@ -12,8 +13,13 @@ const Employee = db.define('Employee', {
     Last_Name: {
         type: Sequelize.STRING
     },
+    Bonus: {
+        type:Sequelize.INTEGER,
+        default:0
+    },
     Birthday: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
     },
     Contract_type: {
         type: Sequelize.STRING

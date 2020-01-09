@@ -13,22 +13,22 @@ let idCounter = 1;
 //     {id:idCounter++, fname:'Wiktor', lname:'Androsiuk',bonus:6,contract:'service' }
 // ];
 
-router.get('/getAll', (req, res, next) => {
-   Emp.findAll()
+router.get('/getAll', (req, res) => {
+    Emp.findAll()
         .then(emps => {
             console.log(emps);
             res.status(200).send(emps);
         })
-        .catch(err => console.log('err: '+ err))
+        .catch(err => console.log('err: ' + err))
 });
 
 router.get('/getById', (req, res, next) => {
     const qid = req.query.id;
-    if(qid == null) {
+    if (qid == null) {
         res.status(404).send('Please provide valid id');
     } else {
         const emp = emps.find(e => e.id = qid);
-        if(emp === null) {
+        if (emp === null) {
             res.send(404).send('No emp find with given id');
         } else {
             res.send(emp);
@@ -36,49 +36,68 @@ router.get('/getById', (req, res, next) => {
     }
 });
 
-router.put('/create', (req, res, next) => {
+router.post('/create', (req, res) => {
     const fname = req.headers.fname;
     const lname = req.headers.lname;
     const bonus = req.headers.bonus;
+    const bdate = req.headers.bdate;
     const contractType = req.headers.contract;
 
-    emps.push({id:idCounter++,fname:fname,lname:lname,bonus:bonus,contract:contractType});
-    res.status(201).send('Create a new employee');
+    db.sync()
+        .then(() => Emp.create({
+            First_Name: fname,
+            Last_Name: lname,
+            Bonus: bonus,
+            Birthday: bdate,
+            Contract_type: contractType
+        }))
+        .then(emp => {
+            console.log(JSON.stringify(emp));
+            res.sendStatus(201);
+        })
+        .catch(err => console.log(err));
 });
 
-router.delete('/deleteById', (req, res, next) => {
-    if(req.query.id == null) {
-      res.send('Plsease provide valid id');
+router.delete('/deleteById', (req, res) => {
+    const eid = req.query.id;
+    if (eid == null) {
+        res.status(400).send('Please provide valid id')
     } else {
-      const emp = emps.find(u => u.id === parseInt(req.query.id));
-      if(!emp) {
-        res.status(404).send('No emp with this id found');
-      } else {
-        const index = emps.indexOf(emp);
-        emps.splice(index, 1);
-        res.send('emp deleted succesfully');
-      }
+        Emp.destroy({
+            where: {
+                employee_id: eid
+            }
+        })
+        .then(()=> {
+                console.log('delted emp');
+                res.sendStatus(204);
+            }
+        )
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(404);
+        })
     }
-  });
+});
 
 router.patch('/updateById', (req, res, next) => {
-    if(req.query.id == null) {
+    if (req.query.id == null) {
         res.send('Plsease provide valid id');
-      } else {
+    } else {
         const emp = emps.find(u => u.id === parseInt(req.query.id));
-        if(!emp) {
-          res.status(404).send('No emp with this id found');
+        if (!emp) {
+            res.status(404).send('No emp with this id found');
         } else {
             const index = emps.indexOf(emp);
             const fname = req.headers.fname;
             const lname = req.headers.lname;
             const bonus = req.headers.bonus;
             const contractType = req.headers.contract;
-            const updatedEmp = {id:emps[index].id, fname:fname, lname:lname, bonus:bonus, contract:contractType};
+            const updatedEmp = { id: emps[index].id, fname: fname, lname: lname, bonus: bonus, contract: contractType };
             emps[index] = updatedEmp;
             res.send('emp updated succesfully');
         }
-      }
+    }
 });
 
 module.exports = router;
