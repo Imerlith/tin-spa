@@ -4,6 +4,7 @@ import './main_style.css';
 import BottomPanel from './bottomPanel';
 import Prices from './prices';
 import About from './about';
+import Login from './login';
 
 class AppComponent extends React.Component {
 
@@ -23,6 +24,10 @@ class AppComponent extends React.Component {
                 return <Prices />
             case 'about':
                return <About />
+            case 'login':
+                return <Login />
+            default:
+                return <Prices />
         }
     };
 

@@ -13,6 +13,8 @@ class TopPanelComponent extends React.Component {
         this.props.handleUpdate(name);
     }
 
+    
+
     render() {
         return (
             <div className='top-panel'>
@@ -95,10 +97,10 @@ class HamburgerMenuComponent extends React.Component {
                         <div>
                             <div>
                                 <ul>
-                                    <li>Prices</li>
-                                    <li>Avaliable Stations</li>
-                                    <li>About us</li>
-                                    <li>{logButton}</li>
+                                    <li onClick={this.handlePricesClick}>Prices</li>
+                                    <li onClick={this.handleAStationsClick}>Avaliable Stations</li>
+                                    <li onClick={this.handleAboutClick}>About us</li>
+                                    <li onClick={this.handleLoginClick}>{logButton}</li>
                                 </ul>
                             </div>
                         </div>

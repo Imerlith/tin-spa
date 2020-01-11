@@ -1,0 +1,88 @@
+.content .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 650px;
+}
+
+.content .login-container .login-form {
+    color: #1b1b1b;
+    text-align: center;
+    font-size: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.content .login-form .label-login {
+    font-size: 2.5rem;
+}
+
+.content .login-form .login-box {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 10px;
+    border-radius: 25px;
+}
+
+.content .login-form .label-pass {
+    font-size: 2.5rem;
+}
+
+.content .login-form .pass-box {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 10px;
+    border-radius: 25px;
+}
+
+.content .login-form .sub-btn {
+    background-color: #8B8B8B;
+    color: antiquewhite;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    margin: 25px;
+}
+
+.content .login-form .sub-btn:hover {
+    background-color: #8B8B8B;
+    color: #9a0007;
+}
+
+.content .login-container .noacc {
+    text-align: right;
+    color: #1b1b1b;
+    grid-column: 3/3;
+    grid-row: 3/3;
+    font-size: 1.2rem;
+}
+
+.content .login-container .noacc a {
+    color: #9a0007;
+    text-decoration: none;
+}
+
+.content .login-container .noacc a:hover {
+    color: #9a0007;
+    text-decoration: overline #001970;
+}
+
+@media(max-width:600px){
+    .content .login-container .login-form {
+        width: 100%;
+    }
+}
+
+@media(min-width:1300px) {
+    .login-container .please {
+        font-size: 7vh !important;
+    }
+}
