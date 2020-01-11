@@ -7,7 +7,7 @@ var logger = require('morgan');
 // var indexRouter = require('./routes/index');
 var clientRouter = require('./routes/client');
 var empRouter = require('./routes/employee');
-var sessionsRouter = require('./routes/sessions');
+var sessionsRouter = require('./routes/session');
 const Sequilize = require('sequelize');
 
 var app = express();
@@ -35,6 +35,7 @@ const db = require('./config/database');
 db.authenticate()
   .then(()=> console.log('DB connected'))
   .catch(err => console.log('error '+err))
+
 
 // error handler
 app.use(function(err, req, res, next) {
