@@ -8,6 +8,9 @@ import Login from './login';
 import Register from './register';
 import MainMenu from './mainMenu';
 import LandingPage from './landingPage';
+import Session from './session';
+import Client from './client';
+import Emp from './emp';
 
 class AppComponent extends React.Component {
 
@@ -34,9 +37,15 @@ class AppComponent extends React.Component {
             case 'register':
                 return <Register />
             case 'mainMenu':
-                return <MainMenu />
+                return <MainMenu handleUpdate = {this.handleUpdate} />
+            case 'session':
+                return <Session handleUpdate = {this.handleUpdate} />
+            case 'client':
+                return <Client handleUpdate = {this.handleUpdate} />
+            case 'emp':
+                return <Emp handleUpdate = {this.handleUpdate} />
             default:
-                return <Prices />
+                return <LandingPage />
         }
     };
 

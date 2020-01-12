@@ -37,6 +37,11 @@ body, html, #root, .app {
     font-size: 3vw;
 }
 
+.top-panel h1:hover {
+    cursor: pointer;
+    color: red;
+}
+
 .nav-links {
     background: gray;
     border-radius: 25px;
