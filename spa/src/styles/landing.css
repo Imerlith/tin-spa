@@ -1,0 +1,23 @@
+.content .last-event {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1b1b1b;
+    margin: 0;
+}
+
+.content .index-photo-galery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.arrow-left {
+    width: 3rem;
+}
+
+.arrow-rigth {
+    width: 3rem;
+}

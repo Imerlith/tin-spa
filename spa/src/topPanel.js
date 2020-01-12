@@ -7,16 +7,21 @@ class TopPanelComponent extends React.Component {
             isLoggedIn : props.isLoggedIn,
         }
         this.handleParentUpdate = this.handleParentUpdate.bind(this);
+        this.handleLogoClick = this.handleLogoClick.bind(this);
     }
 
     handleParentUpdate(name) {
         this.props.handleUpdate(name);
     }
 
+    handleLogoClick(e) {
+        this.props.handleUpdate('landingPage');
+    }
+
     render() {
         return (
             <div className='top-panel'>
-                <h1>XxX_G4m3r$_D3nn_XxX</h1>
+                <h1 onClick={this.handleLogoClick}>XxX_G4m3r$_D3nn_XxX</h1>
                 <NavbarComponent isLoggedIn = {this.state.isLoggedIn} onUpdate = {this.handleParentUpdate}/>
                 <HamburgerMenuComponent isLoggedIn = {this.state.isLoggedIn} />
             </div>

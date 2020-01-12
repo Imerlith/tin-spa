@@ -7,12 +7,13 @@ import About from './about';
 import Login from './login';
 import Register from './register';
 import MainMenu from './mainMenu';
+import LandingPage from './landingPage';
 
 class AppComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {compToDisplay:'prices'};
+        this.state = {compToDisplay:'landingPage'};
         this.handleUpdate = this.handleUpdate.bind(this);
     }
 
@@ -22,6 +23,8 @@ class AppComponent extends React.Component {
 
     switchComp(compName) {
         switch (compName) {
+            case 'landingPage':
+                return <LandingPage />
             case 'prices':
                 return <Prices />
             case 'about':
