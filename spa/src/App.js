@@ -5,6 +5,8 @@ import BottomPanel from './bottomPanel';
 import Prices from './prices';
 import About from './about';
 import Login from './login';
+import Register from './register';
+import MainMenu from './mainMenu';
 
 class AppComponent extends React.Component {
 
@@ -25,7 +27,11 @@ class AppComponent extends React.Component {
             case 'about':
                return <About />
             case 'login':
-                return <Login />
+                return <Login handleUpdate = {this.handleUpdate} />
+            case 'register':
+                return <Register />
+            case 'mainMenu':
+                return <MainMenu />
             default:
                 return <Prices />
         }

@@ -40,16 +40,12 @@
 .content .login-form .sub-btn {
     background-color: #8B8B8B;
     color: antiquewhite;
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    text-decoration: none;
-    display: -webkit-flex;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 25px;
     margin: 25px;
+    font-size: 2.4rem;
 }
 
 .content .login-form .sub-btn:hover {
@@ -65,14 +61,15 @@
     font-size: 1.2rem;
 }
 
-.content .login-container .noacc a {
+.content .login-container .noacc b {
     color: #9a0007;
     text-decoration: none;
 }
 
-.content .login-container .noacc a:hover {
+.content .login-container .noacc b:hover {
     color: #9a0007;
     text-decoration: overline #001970;
+    cursor: pointer;
 }
 
 @media(max-width:600px){

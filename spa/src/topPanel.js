@@ -13,8 +13,6 @@ class TopPanelComponent extends React.Component {
         this.props.handleUpdate(name);
     }
 
-    
-
     render() {
         return (
             <div className='top-panel'>
