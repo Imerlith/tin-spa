@@ -11,18 +11,27 @@ import LandingPage from './landingPage';
 import Session from './session';
 import Client from './client';
 import Emp from './emp';
+import MClient from './modifyClient';
 
 class AppComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {compToDisplay:'landingPage'};
+        this.state = {
+            compToDisplay:'landingPage',
+            ention: null
+    };
         this.handleUpdate = this.handleUpdate.bind(this);
+        this.passEntionToEdit = this.passEntionToEdit.bind(this);
     }
 
     handleUpdate(toDisplay) {
         this.setState({compToDisplay:toDisplay});
     };
+
+    passEntionToEdit(ention) {
+        this.setState({ention: ention});
+    }
 
     switchComp(compName) {
         switch (compName) {
@@ -41,9 +50,11 @@ class AppComponent extends React.Component {
             case 'session':
                 return <Session handleUpdate = {this.handleUpdate} />
             case 'client':
-                return <Client handleUpdate = {this.handleUpdate} />
+                return <Client handleUpdate = {this.handleUpdate} ention = {this.passEntionToEdit}/>
             case 'emp':
                 return <Emp handleUpdate = {this.handleUpdate} />
+            case 'modifyclient':
+                return <MClient toUpdate = {this.state.ention} />
             default:
                 return <LandingPage />
         }

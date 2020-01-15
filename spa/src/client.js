@@ -3,7 +3,11 @@ import React from 'react';
 class ClientComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { apiResponse: "" };
+        this.state = {
+            apiResponse: ""
+        };
+        this.onUpdateClick = this.onUpdateClick.bind(this);
+        this.onDeleteClick = this.onDeleteClick.bind(this);
     }
 
     callAPI() {
@@ -21,12 +25,19 @@ class ClientComponent extends React.Component {
 
     onUpdateClick(e){
         console.log('update clicked');
+        const source = e.target || e.srcElement;
+        const id = source.getAttribute('clientid');
 
+        const clientToUpdate = this.state.apiResponse.find(e=>e.Client_Id == id);
+        console.log(clientToUpdate);
+        
+        this.props.handleUpdate('modifyclient');
+        this.props.ention(clientToUpdate);
     }
 
     onDeleteClick(e){
         console.log('delete clicked');
-        
+        this.forceUpdate();
     }
 
     createTable() {
@@ -42,9 +53,10 @@ class ClientComponent extends React.Component {
             row.push(<td>{respnse[i].Favourite_Game}</td>)
             row.push(
                 <td>
-                <button onClick={this.onUpdateClick}>Update</button>
+                <button clientid = {respnse[i].Client_Id} onClick={this.onUpdateClick}>Update</button>
                 <button onClick={this.onDeleteClick}>Delete</button>
-                </td>)
+                </td>
+            )
 
             //Create the parent and add the children
             rows.push(<tr>{row}</tr>)
@@ -55,6 +67,9 @@ class ClientComponent extends React.Component {
     render() {
         return (
             <div className="client-records-container">
+                <button>
+                    New
+                </button>
                 <table>
                     <thead>
                         <tr>
