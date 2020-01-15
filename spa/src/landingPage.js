@@ -8,13 +8,13 @@ class LandingPageComponent extends React.Component {
     render() {
         return (
             <div className='landingPage-container'>
-                <h2 class="last-event">
+                <h2 className="last-event">
                     <p>Last Event</p>
                 </h2>
-                <div class="index-photo-galery">
-                    <img class="arrow-left" src={arrowLeft} alt="arrow left" />
-                    <img class="mphoto" src={lastEvent} alt="last-event" />
-                    <img class="arrow-rigth" src={arrowRight} alt="arrow rigth" />
+                <div className="index-photo-galery">
+                    <img className="arrow-left" src={arrowLeft} alt="arrow left" />
+                    <img className="mphoto" src={lastEvent} alt="last-event" />
+                    <img className="arrow-rigth" src={arrowRight} alt="arrow rigth" />
                 </div>
             </div>
         )
