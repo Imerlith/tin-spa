@@ -232,3 +232,8 @@ footer {
         margin-right: 10px;
     }
 }
+
+
+.modify-client-container {
+    display: flex;
+}
