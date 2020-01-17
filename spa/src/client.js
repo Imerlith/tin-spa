@@ -8,6 +8,7 @@ class ClientComponent extends React.Component {
         };
         this.onUpdateClick = this.onUpdateClick.bind(this);
         this.onDeleteClick = this.onDeleteClick.bind(this);
+        this.onCreateClick = this.onCreateClick.bind(this);
     }
 
     callAPI() {
@@ -16,7 +17,9 @@ class ClientComponent extends React.Component {
             .then(res => {
                 const parsedRes = JSON.parse(res);
                 this.setState({apiResponse: parsedRes})
-            });
+            })
+            .catch(e=>console.log(e)
+            );
     }
 
     componentDidMount() {
@@ -38,6 +41,12 @@ class ClientComponent extends React.Component {
     onDeleteClick(e){
         console.log('delete clicked');
         this.forceUpdate();
+    }
+
+    onCreateClick(e) {
+        console.log('craete new client clicked');
+        this.props.handleUpdate('modifyclient');
+        this.props.ention(null);
     }
 
     createTable() {
@@ -67,7 +76,7 @@ class ClientComponent extends React.Component {
     render() {
         return (
             <div className="client-records-container">
-                <button>
+                <button onClick={this.onCreateClick}>
                     New
                 </button>
                 <table>

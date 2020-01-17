@@ -18,9 +18,19 @@ class ModifyClientComponent extends React.Component {
         else {
             this.state = {client: this.props.toUpdate};
         }
+        this.onAcceptClick = this.onAcceptClick.bind(this);
+        this.onRejectClick = this.onRejectClick.bind(this);
     }
 
+    onAcceptClick(e) {
+        console.log('Accept client clicked');
 
+    }
+
+    onRejectClick(e) {
+        console.log('Reject client clicked');
+        this.props.handleUpdate('client');
+    }
 
     render() {
         return (
@@ -36,8 +46,8 @@ class ModifyClientComponent extends React.Component {
                     <input id='cLV' defaultValue={this.state.client.Last_Visit_Date} type="date"/>
                     <input id='cBirthday' defaultValue={this.state.client.Birthday} type="date"/>
                     <input id='cFG' defaultValue={this.state.client.Favourite_Game} type="text"/>
-                    <button>Accept</button>
-                    <button>Reject</button>
+                    <button onClick={this.onAcceptClick}>Accept</button>
+                    <button onClick={this.onRejectClick}>Reject</button>
                 </form>
             </div>
         );

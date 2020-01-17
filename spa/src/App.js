@@ -54,7 +54,7 @@ class AppComponent extends React.Component {
             case 'emp':
                 return <Emp handleUpdate = {this.handleUpdate} />
             case 'modifyclient':
-                return <MClient toUpdate = {this.state.ention} />
+                return <MClient toUpdate = {this.state.ention} handleUpdate = {this.handleUpdate}/>
             default:
                 return <LandingPage />
         }
