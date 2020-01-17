@@ -20,16 +20,60 @@ class ModifyClientComponent extends React.Component {
         }
         this.onAcceptClick = this.onAcceptClick.bind(this);
         this.onRejectClick = this.onRejectClick.bind(this);
+        this.handleFormFName = this.handleFormFName.bind(this);
     }
 
     onAcceptClick(e) {
         console.log('Accept client clicked');
+        // const client = this.createClientFromForm(client);
+        console.log(this.state.client);
+        // this.validateForm(client);
+        // this.updateClient(client);
 
+    }
+
+    createClientFromForm() {
+        const client =1;
+
+        return client;
+    }
+
+    validateForm() {
+        console.log('validation start');
+        
+    }
+
+    async updateClient(client) {
+         await fetch('http://localhost:3000/client', {
+            method: 'PATCH',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                credentials: 'same-origin',
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body:JSON.stringify(client)
+        })
+        .then(data => console.log(data.json))
+        .catch(err => console.log(err));
     }
 
     onRejectClick(e) {
         console.log('Reject client clicked');
         this.props.handleUpdate('client');
+    }
+
+    handleFormFName(e) {
+        e.persist();
+        this.setState(prevState => {
+            let client = Object.assign({}, prevState.client);
+            client.First_Name = e.target.value;
+            return {client};
+        });
+
+        console.log(this.state.client);
     }
 
     render() {
@@ -41,7 +85,7 @@ class ModifyClientComponent extends React.Component {
                     <label htmlFor='cLV'>Last Visit</label>
                     <label htmlFor='cBirthday'>Birthday</label>
                     <label htmlFor='cFG'>Favourite_Game</label>
-                    <input id='cFirstName' defaultValue={this.state.client.First_Name}  type='text'/>
+                    <input id='cFirstName' value={this.state.client.First_Name} type='text' onChange={this.handleFormFName}/>
                     <input id='cLastName' defaultValue={this.state.client.Last_Name} type="text"/>
                     <input id='cLV' defaultValue={this.state.client.Last_Visit_Date} type="date"/>
                     <input id='cBirthday' defaultValue={this.state.client.Birthday} type="date"/>
