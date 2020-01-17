@@ -21,6 +21,10 @@ class ModifyClientComponent extends React.Component {
         this.onAcceptClick = this.onAcceptClick.bind(this);
         this.onRejectClick = this.onRejectClick.bind(this);
         this.handleFormFName = this.handleFormFName.bind(this);
+        this.handleFormLName = this.handleFormLName.bind(this);
+        this.handleFormLv = this.handleFormLv.bind(this);
+        this.handleFormBirthday = this.handleFormBirthday.bind(this);
+        this.handleFormFg = this.handleFormFg.bind(this);
     }
 
     onAcceptClick(e) {
@@ -68,8 +72,52 @@ class ModifyClientComponent extends React.Component {
     handleFormFName(e) {
         e.persist();
         this.setState(prevState => {
-            let client = Object.assign({}, prevState.client);
+            let client = Object.assign(this.state.client, prevState.client);
             client.First_Name = e.target.value;
+            return {client};
+        });
+
+        console.log(this.state.client);
+    }
+
+    handleFormLName(e) {
+        e.persist();
+        this.setState(prevState => {
+            let client = Object.assign(this.state.client, prevState.client);
+            client.Last_Name = e.target.value;
+            return {client};
+        });
+
+        console.log(this.state.client);
+    }
+
+    handleFormLv(e) {
+        e.persist();
+        this.setState(prevState => {
+            let client = Object.assign(this.state.client, prevState.client);
+            client.Last_Visit_Date = e.target.value;
+            return {client};
+        });
+
+        console.log(this.state.client);
+    }
+
+    handleFormBirthday(e) {
+        e.persist();
+        this.setState(prevState => {
+            let client = Object.assign(this.state.client, prevState.client);
+            client.Birthday = e.target.value;
+            return {client};
+        });
+
+        console.log(this.state.client);
+    }
+
+    handleFormFg(e) {
+        e.persist();
+        this.setState(prevState => {
+            let client = Object.assign(this.state.client, prevState.client);
+            client.Favourite_Game = e.target.value;
             return {client};
         });
 
@@ -86,10 +134,10 @@ class ModifyClientComponent extends React.Component {
                     <label htmlFor='cBirthday'>Birthday</label>
                     <label htmlFor='cFG'>Favourite_Game</label>
                     <input id='cFirstName' value={this.state.client.First_Name} type='text' onChange={this.handleFormFName}/>
-                    <input id='cLastName' defaultValue={this.state.client.Last_Name} type="text"/>
-                    <input id='cLV' defaultValue={this.state.client.Last_Visit_Date} type="date"/>
-                    <input id='cBirthday' defaultValue={this.state.client.Birthday} type="date"/>
-                    <input id='cFG' defaultValue={this.state.client.Favourite_Game} type="text"/>
+                    <input id='cLastName' value={this.state.client.Last_Name} type="text" onChange={this.handleFormLName}/>
+                    <input id='cLV' value={this.state.client.Last_Visit_Date} type="date" onChange={this.handleFormLv}/>
+                    <input id='cBirthday' value={this.state.client.Birthday} type="date" onChange={this.handleFormBirthday}/>
+                    <input id='cFG' value={this.state.client.Favourite_Game} type="text" onChange={this.handleFormFg}/>
                     <button onClick={this.onAcceptClick}>Accept</button>
                     <button onClick={this.onRejectClick}>Reject</button>
                 </form>
