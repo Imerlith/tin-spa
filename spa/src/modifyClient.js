@@ -12,11 +12,15 @@ class ModifyClientComponent extends React.Component {
                     Last_Visit_Date: '',
                     Birthday: '',
                     Favourite_Game: ''
-                }
+                },
+                isInsert: true
             }
         }
         else {
-            this.state = {client: this.props.toUpdate};
+            this.state = {
+                client: this.props.toUpdate,
+                isInsert: false
+            };
         }
         this.onAcceptClick = this.onAcceptClick.bind(this);
         this.onRejectClick = this.onRejectClick.bind(this);
@@ -31,21 +35,48 @@ class ModifyClientComponent extends React.Component {
         console.log('Accept client clicked');
         const client = this.state.client;
         console.log(client);
-        // this.validateForm(client);
-        this.updateClient(client)
-            .then(data => console.log(data))
-            .catch(err => console.log(err));
-        this.props.handleUpdate('client');
+        if (this.isValid(client)) {
+            if (this.state.isInsert) {
+                this.updateOrInsertClient(client, 'POST')
+                .then(data => console.log(data))
+                .catch(err => console.log(err));
+            }
+            else {
+                this.updateOrInsertClient(client, 'PATCH')
+                .then(data => console.log(data))
+                .catch(err => console.log(err));
+            }
+    
+            this.props.handleUpdate('client');
+        } else {
+            console.log('not valid');
+            this.props.ention(client);
+            this.props.handleUpdate('modifyclient');
+        }
     }
 
-    validateForm() {
+    isValid(client) {
         console.log('validation start');
+        return !(
+            this.isEmptyOrNull(client)
+            // || client.Birthday > new Date().format('d-m-Y')
+        );
+    }
+
+    isEmptyOrNull(client) {
+        return this.isBlank(client.First_Name) || this.isBlank(client.Last_Name)
+            || this.isBlank(client.Last_Visit_Date || this.isBlank(client.Birthday))
+            || this.isBlank(client.Favourite_Game);
 
     }
 
-    async updateClient(client) {
+    isBlank(str) {
+        return (!str || /^\s*$/.test(str));
+    }
+
+    async updateOrInsertClient(client, method) {
         const response = await fetch('http://localhost:3000/client', {
-            method: 'PATCH',
+            method: method,
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'

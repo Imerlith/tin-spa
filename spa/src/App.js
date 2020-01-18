@@ -66,7 +66,8 @@ class AppComponent extends React.Component {
             case 'emp':
                 return <Emp handleUpdate = {this.handleUpdate} />
             case 'modifyclient':
-                return <MClient toUpdate = {this.state.ention} handleUpdate = {this.handleUpdate}/>
+                return <MClient ention = {this.passEntionToEdit} toUpdate = {this.state.ention}
+                handleUpdate = {this.handleUpdate} />
             case 'confirmation':
                 return <Confirmation handleUpdate = {this.handleUpdate}
                     fromRecord = {this.state.fromRecord} recordId = {this.state.recordId}/>
