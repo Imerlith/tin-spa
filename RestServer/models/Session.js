@@ -8,17 +8,22 @@ const Session = db.define('Sessions', {
         autoIncrement: true
     },
     S_DATE: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: "2020-01-10"
     },
     Hours: {
         type: Sequelize.INTEGER
     },
     Clients_Client_ID: {
         type: Sequelize.INTEGER,
-        
+
     }
 }, {
     timestamps: false,
 });
+
+Session.associate = function(models) {
+    Session.belongsTo(models.Client, {foreignKey: 'Client_Id'});
+}
 
 module.exports = Session;

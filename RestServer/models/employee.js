@@ -28,4 +28,8 @@ const Employee = db.define('Employee', {
     timestamps: false,
 });
 
+Employee.associate = function(models) {
+
+};
+
 module.exports = Employee;

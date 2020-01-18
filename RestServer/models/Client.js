@@ -28,4 +28,8 @@ const Client = db.define('Clients', {
     timestamps: false,
 });
 
+Client.associate = function(models) {
+    Client.hasMany(models.Session, {foreignKey: 'Client_Id'});
+};
+
 module.exports = Client;
