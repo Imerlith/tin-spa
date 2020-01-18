@@ -29,26 +29,22 @@ class ModifyClientComponent extends React.Component {
 
     onAcceptClick(e) {
         console.log('Accept client clicked');
-        // const client = this.createClientFromForm(client);
-        console.log(this.state.client);
+        const client = this.state.client;
+        console.log(client);
         // this.validateForm(client);
-        // this.updateClient(client);
-
-    }
-
-    createClientFromForm() {
-        const client =1;
-
-        return client;
+        this.updateClient(client)
+            .then(data => console.log(data))
+            .catch(err => console.log(err));
+        this.props.handleUpdate('client');
     }
 
     validateForm() {
         console.log('validation start');
-        
+
     }
 
     async updateClient(client) {
-         await fetch('http://localhost:3000/client', {
+        const response = await fetch('http://localhost:3000/client', {
             method: 'PATCH',
             mode: 'cors',
             cache: 'no-cache',
@@ -59,9 +55,9 @@ class ModifyClientComponent extends React.Component {
             redirect: 'follow',
             referrerPolicy: 'no-referrer',
             body:JSON.stringify(client)
-        })
-        .then(data => console.log(data.json))
-        .catch(err => console.log(err));
+        });
+
+        return await response.json();
     }
 
     onRejectClick(e) {
