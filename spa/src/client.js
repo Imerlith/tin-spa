@@ -82,7 +82,7 @@ class ClientComponent extends React.Component {
                 <button onClick={this.onCreateClick}>
                     New
                 </button>
-                <button onClick={e => this.callAPI}>
+                <button onClick={e => this.callAPI()}>
                     Refresh
                 </button>
                 <table>
