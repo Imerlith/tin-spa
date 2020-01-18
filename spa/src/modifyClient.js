@@ -47,17 +47,13 @@ class ModifyClientComponent extends React.Component {
         const response = await fetch('http://localhost:3000/client', {
             method: 'PATCH',
             mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
             headers: {
-                credentials: 'same-origin',
+                'Content-Type': 'application/json'
             },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
             body:JSON.stringify(client)
         });
 
-        return await response.json();
+        return response;
     }
 
     onRejectClick(e) {
