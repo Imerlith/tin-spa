@@ -50,8 +50,7 @@ class ModifyClientComponent extends React.Component {
             this.props.handleUpdate('client');
         } else {
             console.log('not valid');
-            this.props.ention(client);
-            this.props.handleUpdate('modifyclient');
+            e.preventDefault();
         }
     }
 

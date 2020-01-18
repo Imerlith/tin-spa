@@ -15,11 +15,11 @@ const Client = db.define('Clients', {
     },
     Last_Visit_Date: {
         type: Sequelize.STRING,
-        defaultValue: Sequelize.NOW
+        // defaultValue: Sequelize.NOW
     },
     Birthday: {
         type: Sequelize.STRING,
-        defaultValue: Sequelize.NOW
+        // defaultValue: Sequelize.NOW
     },
     Favourite_Game: {
         type: Sequelize.STRING
