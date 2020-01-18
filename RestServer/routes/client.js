@@ -14,19 +14,14 @@ router.get('/', (req, res) => {
 
 
 router.post('/', (req, res) => {
-    const fname = req.headers.fname;
-    const lname = req.headers.lname;
-    const lvisit = req.headers.lvisit;
-    const bdate = req.headers.bdate;
-    const favgame = req.headers.favgame;
-
+    const newClient = req.body;
     db.sync()
         .then(() => Client.create({
-            First_Name: fname,
-            Last_Name: lname,
-            Last_Visit_Date: lvisit,
-            Birthday: bdate,
-            Favourite_Game: favgame
+            First_Name: newClient.First_Name,
+            Last_Name: newClient.Last_Name,
+            Last_Visit_Date: newClient.Last_Visit_Date,
+            Birthday: newClient.Birthday,
+            Favourite_Game: newClient.Favourite_Game
         }))
         .then(client => {
             console.log(JSON.stringify(client));
@@ -58,23 +53,17 @@ router.delete('/', (req, res) => {
 });
 
 router.patch('/', (req, res) => {
-    const id = req.headers.id;
-    const fname = req.headers.fname;
-    const lname = req.headers.lname;
-    const lvisit = req.headers.lvisit;
-    const bdate = req.headers.bdate;
-    const favgame = req.headers.favgame;
-
+    const updatedClient = req.body;
     Client.update({
-        First_Name: fname,
-        Last_Name: lname,
-        Last_Visit_Date: lvisit,
-        Birthday: bdate,
-        Favourite_Game: favgame
+        First_Name: updatedClient.First_Name,
+        Last_Name: updatedClient.Last_Name,
+        Last_Visit_Date: updatedClient.Last_Visit_Date,
+        Birthday: updatedClient.Birthday,
+        Favourite_Game: updatedClient.Favourite_Game
     },
     {
         where: {
-            Client_Id: id
+            Client_Id: updatedClient.Client_Id
         }
     })
     .then(() => {
