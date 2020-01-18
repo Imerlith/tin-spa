@@ -40,7 +40,10 @@ class ClientComponent extends React.Component {
 
     onDeleteClick(e){
         console.log('delete clicked');
-        this.forceUpdate();
+        const source = e.target || e.srcElement;
+        const clientToDeletId = source.getAttribute('clientid');
+        this.props.handleFromRecord('client', clientToDeletId);
+        this.props.handleUpdate('confirmation');
     }
 
     onCreateClick(e) {
@@ -63,7 +66,7 @@ class ClientComponent extends React.Component {
             row.push(
                 <td>
                 <button clientid = {respnse[i].Client_Id} onClick={this.onUpdateClick}>Update</button>
-                <button onClick={this.onDeleteClick}>Delete</button>
+                <button clientid = {respnse[i].Client_Id} onClick={this.onDeleteClick}>Delete</button>
                 </td>
             )
 
