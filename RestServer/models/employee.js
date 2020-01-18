@@ -18,7 +18,7 @@ const Employee = db.define('Employee', {
         default:0
     },
     Birthday: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         defaultValue: Sequelize.NOW
     },
     Contract_type: {
