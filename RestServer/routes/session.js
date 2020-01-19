@@ -1,35 +1,31 @@
 var express = require('express');
 var router = express.Router();
-const db = require('../config/database');
-const Session = require('../models/Session');
-const Client = require('../models/Client');
+var connection = require('../config/DAL')
 
 router.get('/', (req, res) => {
-    Session.findAll({
-        include: [{
-            model: Client
-        }]
-    })
-        .then(sessions => {
-            console.log(sessions);
-            res.status(200).send(sessions);
-        })
-        .catch(err => console.log('err: ' + err))
+    connection.connect();
+    connection.query('SELECT * FROM Sessions s INNER JOIN Clients c on c.Client_Id = s.Clients_Client_ID',
+    (err, rows, fields) => {
+        if (err) console.log(err);
+        console.log(rows);
+        const data = [];
+        rows.forEach(row => {
+            data.push({
+                "session_id": row.session_id,
+                "S_DATE": row.S_DATE,
+                "Hours": row.Hours,
+                "Client": row.First_Name.concat(' ').concat(row.Last_Name)
+            });
+        });
+        res.status(200).send(data);
+    });
+
+    connection.end();
+
 });
 
 router.post('/', (req, res) => {
-    const newSession = req.body;
-    db.sync()
-        .then(() => Session.create({
-            S_DATE: newSession.S_Date,
-            Hours: newSession.Hours,
-            Clients_Client_ID: newSession.Clients_Client_ID
-        }))
-        .then(session => {
-            console.log(JSON.stringify(session));
-            res.sendStatus(201);
-        })
-        .catch(err => console.log(err));
+
 });
 
 module.exports = router;
