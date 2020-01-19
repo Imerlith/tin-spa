@@ -14,6 +14,7 @@ import Emp from './emp';
 import MClient from './modifyClient';
 import Confirmation from './confirmation';
 import MEmp from './modifyEmp';
+import MSession from './modifySession';
 
 class AppComponent extends React.Component {
 
@@ -60,7 +61,8 @@ class AppComponent extends React.Component {
             case 'mainMenu':
                 return <MainMenu handleUpdate = {this.handleUpdate} />
             case 'session':
-                return <Session handleUpdate = {this.handleUpdate} />
+                return <Session handleUpdate = {this.handleUpdate}
+                ention = {this.passEntionToEdit} handleFromRecord={this.handleFromRecord}/>
             case 'client':
                 return <Client handleUpdate = {this.handleUpdate}
                 ention = {this.passEntionToEdit} handleFromRecord={this.handleFromRecord}/>
@@ -72,6 +74,9 @@ class AppComponent extends React.Component {
                 handleUpdate = {this.handleUpdate} />
             case 'modifyemp':
                 return <MEmp ention = {this.passEntionToEdit} toUpdate = {this.state.ention}
+                handleUpdate = {this.handleUpdate} />
+            case 'modifysession':
+                return <MSession ention = {this.passEntionToEdit} toUpdate = {this.state.ention}
                 handleUpdate = {this.handleUpdate} />
             case 'confirmation':
                 return <Confirmation handleUpdate = {this.handleUpdate}
