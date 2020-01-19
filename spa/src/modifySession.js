@@ -12,19 +12,47 @@ class ModifySessionComponent extends React.Component {
                     Client: '',
                     Employees: []
                 },
-                isInsert: true
+                isInsert: true,
+                AClients: [],
+                AEmps: []
             }
         }
         else {
             this.state = {
                 session: this.props.toUpdate,
-                isInsert: false
+                isInsert: false,
+                AClients: [],
+                AEmps: []
             };
         }
         this.onAcceptClick = this.onAcceptClick.bind(this);
         this.onRejectClick = this.onRejectClick.bind(this);
         this.handleFormDate = this.handleFormDate.bind(this);
         this.handleFormHours = this.handleFormHours.bind(this);
+    }
+
+    getAvaliableLookupValues() {
+        fetch('http://localhost:3000/client')
+            .then(res => res.text())
+            .then(res => {
+                const parsedRes = JSON.parse(res);
+                this.setState({AClients: parsedRes})
+            })
+            .catch(e=>console.log(e)
+            );
+
+        fetch('http://localhost:3000/emp')
+        .then(res => res.text())
+        .then(res => {
+            const parsedRes = JSON.parse(res);
+            this.setState({AEmps: parsedRes})
+        })
+        .catch(e=>console.log(e)
+        );
+    }
+
+    componentDidMount() {
+        this.getAvaliableLookupValues();
     }
 
     onAcceptClick(e) {
@@ -42,7 +70,7 @@ class ModifySessionComponent extends React.Component {
                 .then(data => console.log(data))
                 .catch(err => console.log(err));
             }
-    
+
             this.props.handleUpdate('session');
         } else {
             console.log('not valid');
@@ -92,7 +120,7 @@ class ModifySessionComponent extends React.Component {
             return {session};
         });
 
-        console.log(this.state.client);
+        console.log(this.state.session);
     }
 
     handleFormHours(e) {
@@ -103,9 +131,30 @@ class ModifySessionComponent extends React.Component {
             return {session};
         });
 
-        console.log(this.state.client);
+        console.log(this.state.session);
     }
 
+    createClientComboBox() {
+        const respnse = this.state.AClients;
+        const size = respnse.length;
+        const options = [];
+        for (let i = 0; i < size; i++) {
+            options.push(<option key={Math.random()}>{respnse[i].First_Name.concat(' ').concat(respnse[i].Last_Name)}</option>)
+        }
+
+        return options;
+    }
+
+    createEmpComboBox() {
+        const respnse = this.state.AEmps;
+        const size = respnse.length;
+        const options = [];
+        for (let i = 0; i < size; i++) {
+            options.push(<option key={Math.random()}>{respnse[i].First_Name.concat(' ').concat(respnse[i].Last_Name)}</option>)
+        }
+
+        return options;
+    }
 
     render() {
         return (
@@ -115,8 +164,14 @@ class ModifySessionComponent extends React.Component {
                     <label htmlFor='noh'>Number of hours</label>
                     <label htmlFor='client'>Client</label>
                     <label htmlFor='emps'>Employees</label>
-                    <input id='sDate' value={this.state.session.S_DATE} type='date' onChange={this.handleFormFName}/>
-                    <input id='noh' value={this.state.session.Hours} type="number" onChange={this.handleFormLName}/>
+                    <input id='sDate' value={this.state.session.S_DATE} type='date' onChange={this.handleFormDate}/>
+                    <input id='noh' value={this.state.session.Hours} type="number" onChange={this.handleFormHours}/>
+                    <select id='client'>
+                        {this.createClientComboBox()}
+                    </select>
+                    <select id='emps' multiple>
+                        {this.createEmpComboBox()}
+                    </select>
                     <button onClick={this.onAcceptClick}>Accept</button>
                     <button onClick={this.onRejectClick}>Reject</button>
                 </form>
