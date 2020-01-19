@@ -64,7 +64,7 @@ class ModifyClientComponent extends React.Component {
 
     isEmptyOrNull(client) {
         return this.isBlank(client.First_Name) || this.isBlank(client.Last_Name)
-            || this.isBlank(client.Last_Visit_Date || this.isBlank(client.Birthday))
+            || this.isBlank(client.Last_Visit_Date) || this.isBlank(client.Birthday)
             || this.isBlank(client.Favourite_Game);
 
     }

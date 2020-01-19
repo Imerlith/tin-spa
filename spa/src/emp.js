@@ -85,6 +85,9 @@ class EmpComponent extends React.Component {
                 <button onClick={e => this.callAPI()}>
                     Refresh
                 </button>
+                <button onClick={e => this.props.handleUpdate('mainMenu')}>
+                    Back
+                </button>
                 <table>
                     <thead>
                         <tr>
