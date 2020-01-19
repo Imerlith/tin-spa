@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db = require('../config/database');
 const Client = require('../models/Client');
+var mysql = require('mysql2')
 
 router.get('/', (req, res) => {
     Client.findAll()
@@ -35,6 +36,7 @@ router.delete('/', (req, res) => {
     if (eid == null) {
         res.status(400).send('Please provide valid id')
     } else {
+        deleteClientsFromSession(eid);
         Client.destroy({
             where: {
                 Client_Id: eid
@@ -51,6 +53,22 @@ router.delete('/', (req, res) => {
             })
     }
 });
+
+function deleteClientsFromSession(clientID) {
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'tin',
+        database: 'tin'
+    })
+    connection.connect();
+    connection.query(`DELETE FROM Sessions WHERE Clients_Client_ID = ${clientID}`,
+    (err, rows, fields) => {
+        if (err) console.log(err);
+        console.log(rows);
+    })
+    connection.end();
+}
 
 router.patch('/', (req, res) => {
     const updatedClient = req.body;
