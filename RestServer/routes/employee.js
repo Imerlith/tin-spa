@@ -14,19 +14,14 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const fname = req.headers.fname;
-    const lname = req.headers.lname;
-    const bonus = req.headers.bonus;
-    const bdate = req.headers.bdate;
-    const contractType = req.headers.contract;
-
+    const empToCreate = req.body;
     db.sync()
         .then(() => Emp.create({
-            First_Name: fname,
-            Last_Name: lname,
-            Bonus: bonus,
-            Birthday: bdate,
-            Contract_type: contractType
+            First_Name: empToCreate.First_Name,
+            Last_Name: empToCreate.Last_Name,
+            Bonus: empToCreate.Bonus,
+            Birthday: empToCreate.Birthday,
+            Contract_type: empToCreate.Contract_type
         }))
         .then(emp => {
             console.log(JSON.stringify(emp));
@@ -58,23 +53,17 @@ router.delete('/', (req, res) => {
 });
 
 router.patch('/', (req, res) => {
-    const id = req.headers.id;
-    const fname = req.headers.fname;
-    const lname = req.headers.lname;
-    const bonus = req.headers.bonus;
-    const bdate = req.headers.bdate;
-    const contractType = req.headers.contract;
-
+    const empToUpdate = req.body;
     Emp.update({
-        First_Name: fname,
-        Last_Name: lname,
-        Bonus: bonus,
-        Birthday: bdate,
-        Contract_type: contractType
+        First_Name: empToUpdate.First_Name,
+        Last_Name: empToUpdate.Last_Name,
+        Bonus: empToUpdate.Bonus,
+        Birthday: empToUpdate.Birthday,
+        Contract_type: empToUpdate.Contract_type
     },
     {
         where: {
-            employee_id: id
+            employee_id: empToUpdate.employee_id
         }
     })
     .then(() => {

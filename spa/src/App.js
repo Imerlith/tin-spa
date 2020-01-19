@@ -13,6 +13,7 @@ import Client from './client';
 import Emp from './emp';
 import MClient from './modifyClient';
 import Confirmation from './confirmation';
+import MEmp from './modifyEmp';
 
 class AppComponent extends React.Component {
 
@@ -64,9 +65,13 @@ class AppComponent extends React.Component {
                 return <Client handleUpdate = {this.handleUpdate}
                 ention = {this.passEntionToEdit} handleFromRecord={this.handleFromRecord}/>
             case 'emp':
-                return <Emp handleUpdate = {this.handleUpdate} />
+                return <Emp handleUpdate = {this.handleUpdate}
+                ention = {this.passEntionToEdit} handleFromRecord={this.handleFromRecord}/>
             case 'modifyclient':
                 return <MClient ention = {this.passEntionToEdit} toUpdate = {this.state.ention}
+                handleUpdate = {this.handleUpdate} />
+            case 'modifyemp':
+                return <MEmp ention = {this.passEntionToEdit} toUpdate = {this.state.ention}
                 handleUpdate = {this.handleUpdate} />
             case 'confirmation':
                 return <Confirmation handleUpdate = {this.handleUpdate}
