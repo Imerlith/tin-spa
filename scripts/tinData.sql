@@ -16,3 +16,13 @@ INSERT INTO Sessions (S_DATE, Hours, Clients_Client_ID) VALUES ('2020-01-13',2, 
 INSERT INTO Sessions (S_DATE, Hours, Clients_Client_ID) VALUES ('2020-01-12',2, 4);
 INSERT INTO Sessions (S_DATE, Hours, Clients_Client_ID) VALUES ('2020-01-12',2, 3);
 INSERT INTO Sessions (S_DATE, Hours, Clients_Client_ID) VALUES ('2020-01-13',2, 4);
+
+INSERT INTO Handles (Employees_employee_id, Sessions_session_id) VALUES (1, 1);
+INSERT INTO Handles (Employees_employee_id, Sessions_session_id) VALUES (2, 1);
+INSERT INTO Handles (Employees_employee_id, Sessions_session_id) VALUES (2, 2);
+INSERT INTO Handles (Employees_employee_id, Sessions_session_id) VALUES (2, 3);
+INSERT INTO Handles (Employees_employee_id, Sessions_session_id) VALUES (2, 4);
+INSERT INTO Handles (Employees_employee_id, Sessions_session_id) VALUES (4, 5);
+INSERT INTO Handles (Employees_employee_id, Sessions_session_id) VALUES (2, 6);
+INSERT INTO Handles (Employees_employee_id, Sessions_session_id) VALUES (4, 6);
+INSERT INTO Handles (Employees_employee_id, Sessions_session_id) VALUES (3, 6);

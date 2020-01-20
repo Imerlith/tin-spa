@@ -34,9 +34,10 @@ CREATE TABLE Employees (
 
 -- Table: Handles
 CREATE TABLE Handles (
-    Employees_employee_id int NOT NULL,
-    Sessions_session_id int NOT NULL,
-    CONSTRAINT Handles_pk PRIMARY KEY (Employees_employee_id,Sessions_session_id)
+    handles_id int NOT NULL AUTO_INCREMENT,
+    Employees_employee_id int,
+    Sessions_session_id int,
+    CONSTRAINT Handles_pk PRIMARY KEY (handles_id)
 );
 
 -- Table: Multicomponents
