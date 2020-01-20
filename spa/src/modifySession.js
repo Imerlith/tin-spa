@@ -1,4 +1,5 @@
 import React from 'react';
+import Select from 'react-select';
 
 class ModifySessionComponent extends React.Component {
     constructor(props) {
@@ -31,12 +32,13 @@ class ModifySessionComponent extends React.Component {
         this.handleFormHours = this.handleFormHours.bind(this);
     }
 
-    getAvaliableLookupValues() {
+    async getAvaliableLookupValues() {
         fetch('http://localhost:3000/client')
             .then(res => res.text())
             .then(res => {
                 const parsedRes = JSON.parse(res);
-                this.setState({AClients: parsedRes})
+                this.setState({AClients: parsedRes});
+                this.createClientComboBox();
             })
             .catch(e=>console.log(e)
             );
@@ -46,6 +48,7 @@ class ModifySessionComponent extends React.Component {
         .then(res => {
             const parsedRes = JSON.parse(res);
             this.setState({AEmps: parsedRes})
+            this.createEmpComboBox();
         })
         .catch(e=>console.log(e)
         );
@@ -53,6 +56,36 @@ class ModifySessionComponent extends React.Component {
 
     componentDidMount() {
         this.getAvaliableLookupValues();
+    }
+
+    createClientComboBox() {
+        const respnse = this.state.AClients;
+        const size = respnse.length;
+        const options = [];
+        for (let i = 0; i < size; i++) {
+            options.push({
+                value: respnse[i],
+                label: respnse[i].First_Name.concat(' ').concat(respnse[i].Last_Name)
+            })
+        }
+        this.setState({
+            AClients: options
+        });
+    }
+
+    createEmpComboBox() {
+        const respnse = this.state.AEmps;
+        const size = respnse.length;
+        const options = [];
+        for (let i = 0; i < size; i++) {
+            options.push({
+                value: respnse[i],
+                label: respnse[i].First_Name.concat(' ').concat(respnse[i].Last_Name)
+            })
+        }
+        this.setState({
+            AEmps: options
+        });
     }
 
     onAcceptClick(e) {
@@ -134,27 +167,8 @@ class ModifySessionComponent extends React.Component {
         console.log(this.state.session);
     }
 
-    createClientComboBox() {
-        const respnse = this.state.AClients;
-        const size = respnse.length;
-        const options = [];
-        for (let i = 0; i < size; i++) {
-            options.push(<option key={Math.random()}>{respnse[i].First_Name.concat(' ').concat(respnse[i].Last_Name)}</option>)
-        }
 
-        return options;
-    }
 
-    createEmpComboBox() {
-        const respnse = this.state.AEmps;
-        const size = respnse.length;
-        const options = [];
-        for (let i = 0; i < size; i++) {
-            options.push(<option key={Math.random()}>{respnse[i].First_Name.concat(' ').concat(respnse[i].Last_Name)}</option>)
-        }
-
-        return options;
-    }
 
     render() {
         return (
@@ -166,12 +180,15 @@ class ModifySessionComponent extends React.Component {
                     <label htmlFor='emps'>Employees</label>
                     <input id='sDate' value={this.state.session.S_DATE} type='date' onChange={this.handleFormDate}/>
                     <input id='noh' value={this.state.session.Hours} type="number" onChange={this.handleFormHours}/>
-                    <select id='client'>
-                        {this.createClientComboBox()}
-                    </select>
-                    <select id='emps' multiple>
-                        {this.createEmpComboBox()}
-                    </select>
+                    <Select
+                    options={this.state.AClients}
+                    isSearchable ={true}
+                    />
+                    <Select
+                    options={this.state.AEmps}
+                    isMulti={true}
+                    isSearchable ={true}
+                    />
                     <button onClick={this.onAcceptClick}>Accept</button>
                     <button onClick={this.onRejectClick}>Reject</button>
                 </form>
