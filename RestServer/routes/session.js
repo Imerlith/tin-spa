@@ -20,7 +20,15 @@ router.get('/', (req, res) => {
                     "session_id": row.session_id,
                     "S_DATE": row.S_DATE,
                     "Hours": row.Hours,
-                    "Client": row.First_Name.concat(' ').concat(row.Last_Name)
+                    "Client": row.First_Name.concat(' ').concat(row.Last_Name),
+                    "CObject": {
+                        "Client_Id": row.Clients_Client_ID,
+                        "First_Name": row.First_Name,
+                        "Last_Name": row.Last_Name,
+                        "Last_Visit_Date": row.Last_Visit_Date,
+                        "Birthday": row.Birthday,
+                        "Favourite_Game": row.Favourite_Game
+                    }
                 });
             });
             res.status(200).send(data);

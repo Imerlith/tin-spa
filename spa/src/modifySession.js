@@ -11,11 +11,13 @@ class ModifySessionComponent extends React.Component {
                     S_DATE: '',
                     Hours: '',
                     Client: '',
+                    CObject: null,
                     Employees: []
                 },
                 isInsert: true,
                 AClients: [],
-                AEmps: []
+                AEmps: [],
+                sClient: null,
             }
         }
         else {
@@ -23,7 +25,11 @@ class ModifySessionComponent extends React.Component {
                 session: this.props.toUpdate,
                 isInsert: false,
                 AClients: [],
-                AEmps: []
+                AEmps: [],
+                sClient: {
+                    label: this.props.toUpdate.Client,
+                    value: this.props.toUpdate.CObject
+                }
             };
         }
         this.onAcceptClick = this.onAcceptClick.bind(this);
@@ -167,10 +173,15 @@ class ModifySessionComponent extends React.Component {
         console.log(this.state.session);
     }
 
-
+    handleClientChange = (sClient) => {
+        this.setState({sClient});
+        console.log(`Option selected:`, sClient);
+    }
 
 
     render() {
+        console.log(this.state.sClient);
+
         return (
             <div className="modify-session-container">
                 <form id="session-form">
@@ -180,11 +191,11 @@ class ModifySessionComponent extends React.Component {
                     <label htmlFor='emps'>Employees</label>
                     <input id='sDate' value={this.state.session.S_DATE} type='date' onChange={this.handleFormDate}/>
                     <input id='noh' value={this.state.session.Hours} type="number" onChange={this.handleFormHours}/>
-                    <Select
+                    <Select id='client' onChange={this.handleClientChange} value={this.state.sClient}
                     options={this.state.AClients}
                     isSearchable ={true}
                     />
-                    <Select
+                    <Select id='emps'
                     options={this.state.AEmps}
                     isMulti={true}
                     isSearchable ={true}
