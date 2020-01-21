@@ -1,0 +1,17 @@
+Instrukcja
+1.Przejsc konsola do folderu projektu do katalogu scripts
+2.docker run --name tin-db -p 3306:3306 -e MYSQL_ROOT_PASSWORD=tin -d mysql
+3.docker cp ./create.sql tin-db:/create.sql
+4.docker cp ./tinData.sql tin-db:/tinData.sql
+5.docker exec -it tin-db mysql -uroot -p             (haslo: tin)
+6.CREATE DATABASE tin;
+7.use tin
+8.source /create.sql
+9.source /tinData.sql
+10.Otworzyć nowe okno terminala i przejść do katalogu RestServer
+11.npm install
+12.npm start
+13.Innym terminalem przejść do katalogu spa
+14.npm install
+15.npm start
+16. Gdy zapyta o inny port to Y
