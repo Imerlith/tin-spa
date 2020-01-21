@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/record.css';
 
 class SessionComponent extends React.Component {
     constructor(props) {
@@ -77,15 +78,17 @@ class SessionComponent extends React.Component {
     render() {
         return (
             <div className="sessions-records-container">
-                <button onClick={this.onCreateClick}>
-                    New
-                </button>
-                <button onClick={e => this.callAPI()}>
-                    Refresh
-                </button>
-                <button onClick={e => this.props.handleUpdate('mainMenu')}>
-                    Back
-                </button>
+                <div className="record-nav-buttons">
+                    <button onClick={this.onCreateClick}>
+                        New
+                    </button>
+                    <button onClick={e => this.callAPI()}>
+                        Refresh
+                    </button>
+                    <button onClick={e => this.props.handleUpdate('mainMenu')}>
+                        Back
+                    </button>
+                </div>
                 <table>
                     <thead>
                         <tr>

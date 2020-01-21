@@ -1,0 +1,53 @@
+.client-records-container,
+.emp-records-container,
+.sessions-records-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.record-nav-buttons {
+    display: flex;
+}
+
+.record-nav-buttons button {
+    font-size: 1rem;
+    border-radius: 25px;
+    width: 10rem;
+    margin: 10px;
+}
+
+.record-nav-buttons button:hover {
+   color: red;
+}
+
+.client-records-container table,
+.emp-records-container table,
+.sessions-records-container table {
+    font-size: 2rem;
+    margin: 10px;
+    border-collapse: separate;
+    border-spacing: 15px;
+}
+
+.client-records-container table tbody tr,
+.emp-records-container table tbody tr,
+.sessions-records-container table tbody tr{
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+.client-records-container table tbody button,
+.emp-records-container table tbody button,
+.sessions-records-container table tbody button {
+    font-size: 1.3rem;
+    border-radius: 25px;
+    margin: 5px;
+}
+
+.client-records-container table tbody button:hover,
+.emp-records-container table tbody button:hover,
+.sessions-records-container table tbody button:hover {
+    color: red;
+}

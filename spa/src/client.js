@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/record.css';
 
 class ClientComponent extends React.Component {
     constructor(props) {
@@ -79,6 +80,7 @@ class ClientComponent extends React.Component {
     render() {
         return (
             <div className="client-records-container">
+            <div className="record-nav-buttons">
                 <button onClick={this.onCreateClick}>
                     New
                 </button>
@@ -88,6 +90,7 @@ class ClientComponent extends React.Component {
                 <button onClick={e => this.props.handleUpdate('mainMenu')}>
                     Back
                 </button>
+            </div>
                 <table>
                     <thead>
                         <tr>
