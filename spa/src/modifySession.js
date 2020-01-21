@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import './styles/mSession.css';
 
 class ModifySessionComponent extends React.Component {
     constructor(props) {
@@ -185,23 +186,27 @@ class ModifySessionComponent extends React.Component {
         return (
             <div className="modify-session-container">
                 <form id="session-form">
-                    <label htmlFor='sDate'>Date</label>
-                    <label htmlFor='noh'>Number of hours</label>
-                    <label htmlFor='client'>Client</label>
-                    <label htmlFor='emps'>Employees</label>
-                    <input id='sDate' value={this.state.session.S_DATE} type='date' onChange={this.handleFormDate}/>
-                    <input id='noh' value={this.state.session.Hours} type="number" onChange={this.handleFormHours}/>
-                    <Select id='client' onChange={this.handleClientChange} value={this.state.sClient}
+                    <label htmlFor='sDate' className='label-date'>Date</label>
+                    <label htmlFor='noh' className='label-noh'>Number of hours</label>
+                    <label htmlFor='client' className='label-client'>Client</label>
+                    <label htmlFor='emps' className='label-emps'>Employees</label>
+                    <input id='sDate' value={this.state.session.S_DATE} type='date' className='in-date' onChange={this.handleFormDate}/>
+                    <input id='noh' value={this.state.session.Hours} type="number" className='in-noh' onChange={this.handleFormHours}/>
+                    <Select id='client' onChange={this.handleClientChange} value={this.state.sClient} className='in-client'
                     options={this.state.AClients}
                     isSearchable ={true}
                     />
-                    <Select id='emps'
+                    <Select id='emps' className='in-emps'
                     options={this.state.AEmps}
                     isMulti={true}
                     isSearchable ={true}
                     />
-                    <button onClick={this.onAcceptClick}>Accept</button>
-                    <button onClick={this.onRejectClick}>Reject</button>
+                    <div className='a-button-container'>
+                        <button className='a-button' onClick={this.onAcceptClick}>Accept</button>
+                    </div>
+                    <div className='r-button-container'>
+                        <button className='r-button' onClick={this.onRejectClick}>Reject</button>
+                    </div>
                 </form>
             </div>
         );

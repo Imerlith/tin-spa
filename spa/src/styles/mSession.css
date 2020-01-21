@@ -1,0 +1,88 @@
+.modify-session-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modify-session-container form {
+    font-size: 1.7rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.modify-session-container .a-button-container {
+    grid-row: 4;
+    grid-column: 1/ span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modify-session-container .r-button-container {
+    grid-row: 4;
+    grid-column: 4/ span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modify-session-container button {
+    border-radius: 25px;
+    width: 15rem;
+}
+
+.modify-session-container button:hover {
+    color: red;
+}
+
+.label-date {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.label-noh {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.label-client {
+    grid-row: 1;
+    grid-column: 3;
+}
+
+.label-emps {
+    grid-row: 1;
+    grid-column: 4;
+}
+
+.in-date {
+    grid-row: 2;
+    grid-column: 1;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.in-noh {
+    grid-row: 2;
+    grid-column: 2;
+    width: 15rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.in-client {
+    grid-row: 2;
+    grid-column: 3;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.in-emps {
+    grid-row: 2;
+    grid-column: 4;
+    text-align: center;
+    font-size: 1rem;
+}

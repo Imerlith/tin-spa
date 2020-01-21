@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/mEmp.css';
 
 class ModifyEmpComponent extends React.Component {
     constructor(props) {
@@ -160,8 +161,12 @@ class ModifyEmpComponent extends React.Component {
                     <input id='empBonus' value={this.state.emp.Bonus} type="number" onChange={this.handleFormBonus}/>
                     <input id='empBirthday' value={this.state.emp.Birthday} type="date" onChange={this.handleFormBirthday}/>
                     <input id='empCT' value={this.state.emp.Contract_type} type="text" onChange={this.handleFormCT}/>
-                    <button onClick={this.onAcceptClick}>Accept</button>
-                    <button onClick={this.onRejectClick}>Reject</button>
+                    <div className='a-button-container'>
+                        <button className='a-button' onClick={this.onAcceptClick}>Accept</button>
+                    </div>
+                    <div className='r-button-container'>
+                        <button className='r-button' onClick={this.onRejectClick}>Reject</button>
+                    </div>
                 </form>
             </div>
         );

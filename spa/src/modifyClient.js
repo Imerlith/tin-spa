@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/mClient.css';
 
 class ModifyClientComponent extends React.Component {
     constructor(props) {
@@ -154,14 +155,18 @@ class ModifyClientComponent extends React.Component {
                     <label htmlFor='cLastName' > Last Name</label>
                     <label htmlFor='cLV'>Last Visit</label>
                     <label htmlFor='cBirthday'>Birthday</label>
-                    <label htmlFor='cFG'>Favourite_Game</label>
+                    <label htmlFor='cFG'>Favourite Game</label>
                     <input id='cFirstName' value={this.state.client.First_Name} type='text' onChange={this.handleFormFName}/>
                     <input id='cLastName' value={this.state.client.Last_Name} type="text" onChange={this.handleFormLName}/>
                     <input id='cLV' value={this.state.client.Last_Visit_Date} type="date" onChange={this.handleFormLv}/>
                     <input id='cBirthday' value={this.state.client.Birthday} type="date" onChange={this.handleFormBirthday}/>
                     <input id='cFG' value={this.state.client.Favourite_Game} type="text" onChange={this.handleFormFg}/>
-                    <button onClick={this.onAcceptClick}>Accept</button>
-                    <button onClick={this.onRejectClick}>Reject</button>
+                    <div className='a-button-container'>
+                        <button className='a-button' onClick={this.onAcceptClick}>Accept</button>
+                    </div>
+                    <div className='r-button-container'>
+                        <button className='r-button' onClick={this.onRejectClick}>Reject</button>
+                    </div>
                 </form>
             </div>
         );

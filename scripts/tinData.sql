@@ -6,7 +6,7 @@ INSERT INTO Clients (First_Name, Last_Name, Last_Visit_Date, Birthday, Favourite
 
 
 INSERT INTO Employees (First_Name, Last_Name, Bonus, Birthday, Contract_type) VALUES ('Jakub', 'Dzieciatko', 10, '1998-12-13', 'Full-time');
-INSERT INTO Employees (First_Name, Last_Name, Bonus, Birthday, Contract_type) VALUES ('Paweł', 'Kalbarczyk', 5, '1998-10-13', 'Full-time');
+INSERT INTO Employees (First_Name, Last_Name, Bonus, Birthday, Contract_type) VALUES ('Pawel', 'Kalbarczyk', 5, '1998-10-13', 'Full-time');
 INSERT INTO Employees (First_Name, Last_Name, Bonus, Birthday, Contract_type) VALUES ('Wiktor', 'Androsiuk', 0, '1998-12-13', 'Part-time');
 INSERT INTO Employees (First_Name, Last_Name, Bonus, Birthday, Contract_type) VALUES ('Wojciech', 'Szadurski', 0, '1998-12-13', 'Part-time');
 

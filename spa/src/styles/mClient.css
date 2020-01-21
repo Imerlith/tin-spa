@@ -1,0 +1,39 @@
+.modify-client-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modify-client-container form {
+    font-size: 1.7rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.modify-client-container .a-button-container {
+    grid-row: 4;
+    grid-column: 1/ span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modify-client-container .r-button-container {
+    grid-row: 4;
+    grid-column: 4/ span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modify-client-container button {
+    border-radius: 25px;
+    width: 15rem;
+}
+
+.modify-client-container button:hover {
+    color: red;
+}
