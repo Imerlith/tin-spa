@@ -57,7 +57,7 @@ class AppComponent extends React.Component {
             case 'login':
                 return <Login handleUpdate = {this.handleUpdate} />
             case 'register':
-                return <Register />
+                return <Register handleUpdate = {this.handleUpdate}/>
             case 'mainMenu':
                 return <MainMenu handleUpdate = {this.handleUpdate} />
             case 'session':
