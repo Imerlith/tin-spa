@@ -62,6 +62,7 @@ class SessionComponent extends React.Component {
             row.push(<td key={Math.random()}>{respnse[i].S_DATE}</td>)
             row.push(<td key={Math.random()}>{respnse[i].Hours}</td>)
             row.push(<td key={Math.random()}>{respnse[i].Client}</td>)
+            row.push(<td key={Math.random()}>{respnse[i].Emps.join(', ')}</td>)
             row.push(
                 <td key={Math.random()}>
                 <button sessionid = {respnse[i].session_id} onClick={this.onUpdateClick}>Update</button>
@@ -95,6 +96,7 @@ class SessionComponent extends React.Component {
                             <th>Date</th>
                             <th>Number of hours</th>
                             <th>Client</th>
+                            <th>Employees</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
