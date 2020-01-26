@@ -10,26 +10,69 @@ router.get('/', (req, res) => {
         database: 'tin'
     })
     connection.connect();
-    connection.query('SELECT * FROM Sessions s INNER JOIN Clients c on c.Client_Id = s.Clients_Client_ID',
+    const query = `
+            SELECT
+                Client_Id,
+                c.First_Name as 'cFN',
+                c.Last_Name as 'cLN',
+                c.Last_Visit_Date as 'cLVD',
+                c.Birthday as 'cB',
+                c.Favourite_Game,
+                session_id,
+                S_DATE,
+                Hours,
+                employee_id,
+                e.First_Name as 'eFN',
+                e.Last_Name as 'eLN',
+                e.Bonus,
+                e.Birthday as 'eB',
+                Contract_type
+            FROM
+                Clients c INNER JOIN Sessions s on c.Client_Id = s.Clients_Client_ID
+                INNER JOIN Handles h on h.Sessions_session_id = s.session_id
+                INNER JOIN Employees e on e.employee_id = h.Employees_employee_id`;
+
+    connection.query(query,
         (err, rows, fields) => {
             if (err) console.log(err);
             console.log(rows);
             const data = [];
             rows.forEach(row => {
-                data.push({
-                    "session_id": row.session_id,
-                    "S_DATE": row.S_DATE,
-                    "Hours": row.Hours,
-                    "Client": row.First_Name.concat(' ').concat(row.Last_Name),
-                    "CObject": {
-                        "Client_Id": row.Clients_Client_ID,
-                        "First_Name": row.First_Name,
-                        "Last_Name": row.Last_Name,
-                        "Last_Visit_Date": row.Last_Visit_Date,
-                        "Birthday": row.Birthday,
-                        "Favourite_Game": row.Favourite_Game
-                    }
-                });
+                const search = data.find(s => s.session_id == row.session_id);
+                if (search) {
+                    data[data.indexOf(search)].OEmps.push({
+                        "First_Name": row.eFN,
+                        "Last_Name": row.eLN,
+                        "Bonus": row.Bonus,
+                        "Birthday": row.eB,
+                        "Contract_type": row.Contract_type
+                    });
+                    data[data.indexOf(search)].Emps.push(row.eFN.concat(' ').concat(row.eLN));
+                }
+                else {
+                    data.push({
+                        "session_id": row.session_id,
+                        "S_DATE": row.S_DATE,
+                        "Hours": row.Hours,
+                        "Client": row.cFN.concat(' ').concat(row.cLN),
+                        "CObject": {
+                            "Client_Id": row.Clients_Client_ID,
+                            "First_Name": row.First_Name,
+                            "Last_Name": row.Last_Name,
+                            "Last_Visit_Date": row.cLVD,
+                            "Birthday": row.cB,
+                            "Favourite_Game": row.Favourite_Game
+                        },
+                        "Emps": [row.eFN.concat(' ').concat(row.eLN)],
+                        "OEmps": [{
+                            "First_Name": row.eFN,
+                            "Last_Name": row.eLN,
+                            "Bonus": row.Bonus,
+                            "Birthday": row.eB,
+                            "Contract_type": row.Contract_type
+                        }]
+                    });
+                }
             });
             res.status(200).send(data);
         });
