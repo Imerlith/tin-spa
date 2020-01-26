@@ -19,6 +19,7 @@ class ModifySessionComponent extends React.Component {
                 AClients: [],
                 AEmps: [],
                 sClient: null,
+                sEmps: []
             }
         }
         else {
@@ -30,7 +31,8 @@ class ModifySessionComponent extends React.Component {
                 sClient: {
                     label: this.props.toUpdate.Client,
                     value: this.props.toUpdate.CObject
-                }
+                },
+                sEmps: this.props.toUpdate.selectedEmps
             };
         }
         this.onAcceptClick = this.onAcceptClick.bind(this);
@@ -179,6 +181,10 @@ class ModifySessionComponent extends React.Component {
         console.log(`Option selected:`, sClient);
     }
 
+    handleEmpsChange = (sEmps) => {
+        this.setState({sEmps});
+        console.log('Emps selected: '+sEmps);
+    }
 
     render() {
         console.log(this.state.sClient);
@@ -196,7 +202,7 @@ class ModifySessionComponent extends React.Component {
                     options={this.state.AClients}
                     isSearchable ={true}
                     />
-                    <Select id='emps' className='in-emps'
+                    <Select id='emps' className='in-emps' value={this.state.sEmps} onChange={this.handleEmpsChange}
                     options={this.state.AEmps}
                     isMulti={true}
                     isSearchable ={true}

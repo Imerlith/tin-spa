@@ -34,9 +34,25 @@ class SessionComponent extends React.Component {
 
         const sessionToUpdate = this.state.apiResponse.find(s=>s.session_id == id);
         console.log(sessionToUpdate);
+        sessionToUpdate.selectedEmps = this.generateSelectedEmps(sessionToUpdate);
 
         this.props.handleUpdate('modifysession');
         this.props.ention(sessionToUpdate);
+    }
+
+    generateSelectedEmps(session) {
+        const selectedEmps = [];
+        console.log(session);
+        
+        for (let i=0; i < session.Emps.length; i++) {
+            selectedEmps.push({
+                label: session.Emps[i],
+                value: session.OEmps[i]
+            });
+        }
+        console.log(selectedEmps);
+
+        return selectedEmps;
     }
 
     onDeleteClick(e){
