@@ -33,12 +33,14 @@ class ConfirmationComponent extends React.Component {
         return(
             <div className="confirmation-container">
             <h1>Are you sure you want to delete this record ?</h1>
-            <button onClick={this.onYesClick}>
-                Yes
-            </button>
-            <button onClick={this.onNoClick}>
-                No
-            </button>
+                <div className="con-button">
+                    <button onClick={this.onYesClick}>
+                        Yes
+                    </button>
+                    <button onClick={this.onNoClick}>
+                        No
+                    </button>
+                </div>
             </div>
         )
     }

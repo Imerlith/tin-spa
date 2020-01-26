@@ -6,9 +6,10 @@
 }
 
 .modify-session-container form {
+    margin: 5px;
     font-size: 1.7rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-columns: 4fr 1fr 5fr 8fr ;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
 }

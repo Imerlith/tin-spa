@@ -237,3 +237,26 @@ footer {
 .modify-client-container {
     display: flex;
 }
+
+.confirmation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.confirmation-container .con-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.con-button button {
+    border-radius: 25px;
+    width: 15rem;
+    margin: 15px;
+}
+
+.con-button button:hover {
+    color: red;
+}
