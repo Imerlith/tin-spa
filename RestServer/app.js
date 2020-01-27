@@ -8,6 +8,7 @@ var cors = require("cors");
 var clientRouter = require('./routes/client');
 var empRouter = require('./routes/employee');
 var sessionsRouter = require('./routes/session');
+var handlesRouter = require('./routes/handles');
 const Sequilize = require('sequelize');
 
 var app = express();
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/client', clientRouter);
 app.use('/emp', empRouter);
 app.use('/session', sessionsRouter);
+app.use('/handles', handlesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
