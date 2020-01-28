@@ -59,7 +59,13 @@ class SessionComponent extends React.Component {
         console.log('delete clicked');
         const source = e.target || e.srcElement;
         const sessionToDeleteId = source.getAttribute('sessionid');
-        this.props.handleFromRecord('session', sessionToDeleteId);
+        const session = this.state.apiResponse.find(s => s.session_id == sessionToDeleteId);
+        const deleteReq = {
+            handles_id: session.handles_id,
+            session_id: sessionToDeleteId
+        };
+
+        this.props.handleFromRecord(deleteReq, 'sessions');
         this.props.handleUpdate('confirmation');
     }
 

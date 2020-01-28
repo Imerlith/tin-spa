@@ -8,16 +8,53 @@ class ConfirmationComponent extends React.Component {
     }
 
     onYesClick(e) {
-        this.deleteRecord(this.props.fromRecord, this.props.recordId)
-            .then(data => {
-                console.log(data);
-            })
-            .catch(err => console.log(err));
-        this.props.handleUpdate(this.props.fromRecord);
+        const reqArray = this.props.reqArray;
+        console.log(reqArray);
+        switch (this.props.reqName) {
+            case 'client' :
+            this.deleteClient(reqArray);
+            this.props.handleUpdate('sessions');
+             break;
+            case 'emp' :
+                this.deleteEmp(reqArray);
+                this.props.handleUpdate('sessions');
+                 break;
+            case 'session' :
+                this.deleteSession(reqArray);
+                this.props.handleUpdate('sessions');
+                break;
+        }
     }
 
-    async deleteRecord(objectName, id) {
-        const response = await fetch('http://localhost:3000/'+objectName+'/?id='+id, {
+    deleteClient(req) {
+        this.deleteRecord('client', req.Client_Id)
+            .then(
+                this.deleteRecord('session', req.session_id)
+                    .then(
+                        this.deleteRecord('handles', req.handles_id)
+                    )
+            );
+    }
+
+    deleteEmp(req) {
+        this.deleteRecord('emp', req.employee_id)
+            .then(
+                this.deleteRecord('session', req.session_id)
+                    .then(
+                        this.deleteRecord('handles', req.handles_id)
+                    )
+            );
+    }
+
+    deleteSession(req) {
+        this.deleteRecord('session', req.session_id)
+            .then(
+                this.deleteRecord('handles', req.handles_id)
+            );
+    }
+
+    async deleteRecord(recordName, recordId) {
+        const response = await fetch('http://localhost:3000/'+recordName+'/?id='+recordId, {
             method: 'DELETE',
             mode: 'cors'
         });

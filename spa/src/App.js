@@ -23,8 +23,8 @@ class AppComponent extends React.Component {
         this.state = {
             compToDisplay:'landingPage',
             ention: null,
-            fromRecord: '',
-            recordId: 0
+            reqArray: null,
+            reqName: ''
     };
         this.handleUpdate = this.handleUpdate.bind(this);
         this.passEntionToEdit = this.passEntionToEdit.bind(this);
@@ -39,10 +39,10 @@ class AppComponent extends React.Component {
         this.setState({ention: ention});
     }
 
-    handleFromRecord(recordName, recordId) {
+    handleFromRecord(reqArray, reqName) {
         this.setState({
-            fromRecord: recordName,
-            recordId: recordId
+            reqArray: reqArray,
+            reqName: reqName
         });
     }
 
@@ -80,7 +80,7 @@ class AppComponent extends React.Component {
                 handleUpdate = {this.handleUpdate} />
             case 'confirmation':
                 return <Confirmation handleUpdate = {this.handleUpdate}
-                    fromRecord = {this.state.fromRecord} recordId = {this.state.recordId}/>
+                reqArray = {this.state.reqArray} reqName = {this.state.reqName} />
             default:
                 return <LandingPage />
         }

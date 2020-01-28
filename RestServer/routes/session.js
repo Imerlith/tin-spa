@@ -26,7 +26,8 @@ router.get('/', (req, res) => {
                 e.Last_Name as 'eLN',
                 e.Bonus,
                 e.Birthday as 'eB',
-                Contract_type
+                Contract_type,
+                handles_id
             FROM
                 Clients c INNER JOIN Sessions s on c.Client_Id = s.Clients_Client_ID
                 INNER JOIN Handles h on h.Sessions_session_id = s.session_id
@@ -70,7 +71,8 @@ router.get('/', (req, res) => {
                             "Bonus": row.Bonus,
                             "Birthday": row.eB,
                             "Contract_type": row.Contract_type
-                        }]
+                        }],
+                        handles_id: row.handles_id
                     });
                 }
             });
