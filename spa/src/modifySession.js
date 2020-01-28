@@ -19,7 +19,8 @@ class ModifySessionComponent extends React.Component {
                 AClients: [],
                 AEmps: [],
                 sClient: null,
-                sEmps: []
+                sEmps: [],
+                sIndex: 1
             }
         }
         else {
@@ -32,7 +33,8 @@ class ModifySessionComponent extends React.Component {
                     label: this.props.toUpdate.Client,
                     value: this.props.toUpdate.CObject
                 },
-                sEmps: this.props.toUpdate.selectedEmps
+                sEmps: this.props.toUpdate.selectedEmps,
+                sIndex: 1
             };
         }
         this.onAcceptClick = this.onAcceptClick.bind(this);
@@ -61,6 +63,19 @@ class ModifySessionComponent extends React.Component {
         })
         .catch(e=>console.log(e)
         );
+
+        fetch('http://localhost:3000/session')
+            .then(res => res.text())
+            .then(res => {
+                const parsedRes = JSON.parse(res);
+                let max = 1;
+                for (var i = 0; i < parsedRes.length; i++) {
+                    max = parsedRes[i].session_id > max ? parsedRes[i].session_id : max;
+                }
+                max++;
+                this.setState({sIndex: max});
+            })
+            .catch(e => console.log(e));
     }
 
     componentDidMount() {
@@ -103,7 +118,14 @@ class ModifySessionComponent extends React.Component {
         console.log(session);
         if (this.isValid(session)) {
             if (this.state.isInsert) {
-                this.updateOrInsertSession(session, 'POST')
+                const sesToIns = {
+                    S_DATE: session.S_DATE,
+                    Hours: session.Hours,
+                    Clients_Client_ID: this.state.sClient.value.Clients_Client_ID
+                }
+                console.log(sesToIns);
+                
+                this.insertSession(sesToIns)
                 .then(data => console.log(data))
                 .catch(err => console.log(err));
             }
@@ -122,9 +144,10 @@ class ModifySessionComponent extends React.Component {
 
     isValid(session) {
         console.log('validation start');
-        return !(
-            this.isEmptyOrNull(session)
-        );
+        // return !(
+        //     this.isEmptyOrNull(session)
+        // );
+        return true;
     }
 
     isEmptyOrNull(session) {
@@ -147,6 +170,30 @@ class ModifySessionComponent extends React.Component {
         });
 
         return response;
+    }
+
+    async insertSession(session) {
+        await fetch('http://localhost:3000/session', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(session)
+        })
+        for(let i =0; i<this.state.sEmps.length; i++ ) {
+            await fetch('http://localhost:3000/handles', {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify({
+                    Employees_employee_id: this.state.sEmps[i].value.employee_id,
+                    Sessions_session_id: this.state.sIndex
+                })
+            })
+        }
     }
 
     onRejectClick(e) {
