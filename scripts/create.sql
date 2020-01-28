@@ -88,12 +88,7 @@ CREATE TABLE Stations (
 
 -- foreign keys
 -- Reference: Handles_Employees (table: Handles)
-ALTER TABLE Handles ADD CONSTRAINT Handles_Employees FOREIGN KEY Handles_Employees (Employees_employee_id)
-    REFERENCES Employees (employee_id);
 
--- Reference: Handles_Sessions (table: Handles)
-ALTER TABLE Handles ADD CONSTRAINT Handles_Sessions FOREIGN KEY Handles_Sessions (Sessions_session_id)
-    REFERENCES Sessions (session_id);
 
 -- Reference: Multicomponents_Components (table: Multicomponents)
 ALTER TABLE Multicomponents ADD CONSTRAINT Multicomponents_Components FOREIGN KEY Multicomponents_Components (Components_component_id)
@@ -112,8 +107,7 @@ ALTER TABLE Multisoftware ADD CONSTRAINT Multisoftware_Stations FOREIGN KEY Mult
     REFERENCES Stations (station_id);
 
 -- Reference: Sessions_Clients (table: Sessions)
-ALTER TABLE Sessions ADD CONSTRAINT Sessions_Clients FOREIGN KEY Sessions_Clients (Clients_Client_ID)
-    REFERENCES Clients (Client_ID);
+
 
 -- Reference: StationUsed_Sessions (table: StationUsed)
 ALTER TABLE StationUsed ADD CONSTRAINT StationUsed_Sessions FOREIGN KEY StationUsed_Sessions (Sessions_session_id)

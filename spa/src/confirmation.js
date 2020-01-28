@@ -13,11 +13,11 @@ class ConfirmationComponent extends React.Component {
         switch (this.props.reqName) {
             case 'client' :
             this.deleteClient(reqArray);
-            this.props.handleUpdate('sessions');
+            this.props.handleUpdate('client');
              break;
             case 'emp' :
                 this.deleteEmp(reqArray);
-                this.props.handleUpdate('sessions');
+                this.props.handleUpdate('emp');
                  break;
             case 'session' :
                 this.deleteSession(reqArray);
@@ -28,22 +28,22 @@ class ConfirmationComponent extends React.Component {
 
     deleteClient(req) {
         this.deleteRecord('client', req.Client_Id)
-            .then(
-                this.deleteRecord('session', req.session_id)
-                    .then(
-                        this.deleteRecord('handles', req.handles_id)
-                    )
-            );
+            // .then(
+            //     this.deleteRecord('session', req.session_id)
+            //         .then(
+            //             this.deleteRecord('handles', req.handles_id)
+            //         )
+            // );
     }
 
     deleteEmp(req) {
         this.deleteRecord('emp', req.employee_id)
-            .then(
-                this.deleteRecord('session', req.session_id)
-                    .then(
-                        this.deleteRecord('handles', req.handles_id)
-                    )
-            );
+            // .then(
+            //     this.deleteRecord('session', req.session_id)
+            //         .then(
+            //             this.deleteRecord('handles', req.handles_id)
+            //         )
+            // );
     }
 
     deleteSession(req) {

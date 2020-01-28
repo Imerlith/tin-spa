@@ -43,7 +43,9 @@ class ClientComponent extends React.Component {
         console.log('delete clicked');
         const source = e.target || e.srcElement;
         const clientToDeletId = source.getAttribute('clientid');
-        this.props.handleFromRecord('client', clientToDeletId);
+        this.props.handleFromRecord( {
+            Client_Id: clientToDeletId
+        } ,'client');
         this.props.handleUpdate('confirmation');
     }
 

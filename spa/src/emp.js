@@ -43,7 +43,9 @@ class EmpComponent extends React.Component {
         console.log('delete clicked');
         const source = e.target || e.srcElement;
         const empToDeleteId = source.getAttribute('empid');
-        this.props.handleFromRecord('emp', empToDeleteId);
+        this.props.handleFromRecord( {
+            employee_id: empToDeleteId
+        }, 'emp');
         this.props.handleUpdate('confirmation');
     }
 
