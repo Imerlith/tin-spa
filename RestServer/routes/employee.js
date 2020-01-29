@@ -3,6 +3,13 @@ var router = express.Router();
 const db = require('../config/database');
 const Emp = require('../models/Employee');
 
+function validate(client) {
+    return client.First_Name == '' ||
+            client.Last_Name == '' ||
+            client.Birthday == null ||
+            client.Bonus <=0 ||
+            client.Contract_type == '';
+}
 
 router.get('/', (req, res) => {
     Emp.findAll()
@@ -15,6 +22,10 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const empToCreate = req.body;
+    if (validate(empToCreate)) {
+        res.sendStatus(400);
+        return;
+    }
     db.sync()
         .then(() => Emp.create({
             First_Name: empToCreate.First_Name,
