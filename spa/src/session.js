@@ -65,7 +65,7 @@ class SessionComponent extends React.Component {
             session_id: sessionToDeleteId
         };
 
-        this.props.handleFromRecord(deleteReq, 'sessions');
+        this.props.handleFromRecord(deleteReq, 'session');
         this.props.handleUpdate('confirmation');
     }
 

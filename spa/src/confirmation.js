@@ -63,7 +63,7 @@ class ConfirmationComponent extends React.Component {
     }
 
     onNoClick(e) {
-        this.props.handleUpdate(this.props.fromRecord);
+        this.props.handleUpdate(this.props.reqName);
     }
 
     render() {
