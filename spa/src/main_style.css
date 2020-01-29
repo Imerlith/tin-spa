@@ -260,3 +260,23 @@ footer {
 .con-button button:hover {
     color: red;
 }
+
+.modify-client-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.modify-client-container .fname-error {
+    grid-column: 1;
+    grid-row: 1;
+}
+.modify-client-container .lname-error {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.merror {
+    font-size: 1rem;
+    color: red;
+}

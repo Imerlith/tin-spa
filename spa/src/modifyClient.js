@@ -57,16 +57,44 @@ class ModifyClientComponent extends React.Component {
 
     isValid(client) {
         console.log('validation start');
+        this.resetErrors();
         return !(
             this.isEmptyOrNull(client)
             // || client.Birthday > new Date().format('d-m-Y')
         );
     }
 
+    resetErrors() {
+        document.getElementById('fname-error').innerHTML = '';
+        document.getElementById('lname-error').innerHTML = '';
+        document.getElementById('lvisit-error').innerHTML = '';
+        document.getElementById('birthday-error').innerHTML = '';
+        document.getElementById('fgame-error').innerHTML = '';
+    }
+
     isEmptyOrNull(client) {
-        return this.isBlank(client.First_Name) || this.isBlank(client.Last_Name)
-            || this.isBlank(client.Last_Visit_Date) || this.isBlank(client.Birthday)
-            || this.isBlank(client.Favourite_Game);
+        let errCount = 0;
+        if (this.isBlank(client.First_Name)) {
+            errCount++;
+            document.getElementById('fname-error').innerHTML = 'First Name cant be blank';
+        }
+        if (this.isBlank(client.Last_Name)) {
+            errCount++;
+            document.getElementById('lname-error').innerHTML = 'Last Name cant be blank';
+        }
+        if (this.isBlank(client.Last_Visit_Date)) {
+            errCount++;
+            document.getElementById('lvisit-error').innerHTML = 'Last Visit cant be blank';
+        }
+        if (this.isBlank(client.Birthday)) {
+            errCount++;
+            document.getElementById('birthday-error').innerHTML = 'Birthday cant be blank';
+        }
+        if (this.isBlank(client.Favourite_Game)) {
+            errCount++;
+            document.getElementById('fgame-error').innerHTML = 'Favourite game cant be blank';
+        }
+        return errCount > 0;
 
     }
 
@@ -161,6 +189,11 @@ class ModifyClientComponent extends React.Component {
                     <input id='cLV' value={this.state.client.Last_Visit_Date} type="date" onChange={this.handleFormLv}/>
                     <input id='cBirthday' value={this.state.client.Birthday} type="date" onChange={this.handleFormBirthday}/>
                     <input id='cFG' value={this.state.client.Favourite_Game} type="text" onChange={this.handleFormFg}/>
+                    <div className='merror' id='fname-error'></div>
+                    <div className='merror' id='lname-error'></div>
+                    <div className='merror' id='lvisit-error'></div>
+                    <div className='merror' id='birthday-error'></div>
+                    <div className='merror' id='fgame-error'></div>
                     <div className='a-button-container'>
                         <button className='a-button' onClick={this.onAcceptClick}>Accept</button>
                     </div>
@@ -168,6 +201,7 @@ class ModifyClientComponent extends React.Component {
                         <button className='r-button' onClick={this.onRejectClick}>Reject</button>
                     </div>
                 </form>
+
             </div>
         );
     }
