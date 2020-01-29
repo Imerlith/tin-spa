@@ -2,6 +2,12 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql2')
 
+function validate(sesion) {
+    return sesion.S_DATE == null ||
+        sesion.Hours <=0 ||
+        sesion.Clients_Client_ID == null;
+}
+
 router.get('/', (req, res) => {
     const connection = mysql.createConnection({
         host: 'localhost',
@@ -91,6 +97,10 @@ router.post('/', (req, res) => {
         database: 'tin'
     })
     const sessionToCreate = req.body;
+    if (validate(sessionToCreate)) {
+        res.sendStatus(400);
+        return;
+    }
     console.log(sessionToCreate)
     connection.connect();
     connection.query(`INSERT INTO Sessions (S_DATE, Hours, Clients_Client_ID)
@@ -111,6 +121,10 @@ router.patch('/', (req, res) => {
         database: 'tin'
     })
     const sessionToUpdate = req.body;
+    if (validate(sessionToUpdate)) {
+        res.sendStatus(400);
+        return;
+    }
     console.log(sessionToUpdate)
     connection.connect();
     connection.query(
