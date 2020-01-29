@@ -4,6 +4,12 @@ const db = require('../config/database');
 const Handle = require('../models/Handle');
 var mysql = require('mysql2')
 
+function validate(handle) {
+    return handle.Sessions_session_id == null ||
+    handle.Employees_employee_id == null
+            ;
+}
+
 router.get('/', (req, res) => {
     Handle.findAll()
         .then(handles => {
@@ -15,6 +21,10 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const handleToCreate = req.body;
+    if (validate(handleToCreate)) {
+        res.sendStatus(400);
+        return;
+    }
     db.sync()
         .then(() => Handle.create({
             Employees_employee_id: handleToCreate.Employees_employee_id,
@@ -51,6 +61,10 @@ router.delete('/', (req, res) => {
 
 router.patch('/', (req, res) => {
     const handleToUpdate = req.body;
+    if (validate(handleToUpdate)) {
+        res.sendStatus(400);
+        return;
+    }
     Handle.update({
         Employees_employee_id: handleToUpdate.Employees_employee_id,
         Sessions_session_id: handleToUpdate.Sessions_session_id
