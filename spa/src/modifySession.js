@@ -144,15 +144,40 @@ class ModifySessionComponent extends React.Component {
 
     isValid(session) {
         console.log('validation start');
-        // return !(
-        //     this.isEmptyOrNull(session)
-        // );
-        return true;
+        this.resetErrors();
+        return !(
+            this.isEmptyOrNull(session)
+            || session.Hours <=0
+        );
     }
 
-    isEmptyOrNull(session) {
-        return this.isBlank(session.S_DATE) || this.isBlank(session.Hours)
-            || session.Client == null || (session.Employees.length < 1)
+    resetErrors() {
+        document.getElementById('sdate-error').innerHTML = '';
+        document.getElementById('noh-error').innerHTML = '';
+        document.getElementById('client-error').innerHTML = '';
+        document.getElementById('emp-error').innerHTML = '';
+    }
+
+    isEmptyOrNull(client) {
+        let errCount = 0;
+        if (this.isBlank(client.S_DATE)) {
+            errCount++;
+            document.getElementById('sdate-error').innerHTML = 'Date cant be blank';
+        }
+        if (this.isBlank(client.Hours) || client.Hours <=0) {
+            errCount++;
+            document.getElementById('noh-error').innerHTML = 'Number of hours cant be blank or lower than 1';
+        }
+        if (this.state.sClient == null) {
+            errCount++;
+            document.getElementById('client-error').innerHTML = 'Select one client';
+        }
+        if (this.isBlank(this.state.sEmps)) {
+            errCount++;
+            document.getElementById('emp-error').innerHTML = 'Select at least one employee';
+        }
+        return errCount > 0;
+
     }
 
     isBlank(str) {
@@ -254,6 +279,10 @@ class ModifySessionComponent extends React.Component {
                     isMulti={true}
                     isSearchable ={true}
                     />
+                    <div className='merror' id='sdate-error'></div>
+                    <div className='merror' id='noh-error'></div>
+                    <div className='merror' id='client-error'></div>
+                    <div className='merror' id='emp-error'></div>
                     <div className='a-button-container'>
                         <button className='a-button' onClick={this.onAcceptClick}>Accept</button>
                     </div>

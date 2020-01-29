@@ -21,7 +21,7 @@ class ConfirmationComponent extends React.Component {
                  break;
             case 'session' :
                 this.deleteSession(reqArray);
-                this.props.handleUpdate('sessions');
+                this.props.handleUpdate('session');
                 break;
         }
     }

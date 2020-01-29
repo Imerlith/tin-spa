@@ -84,7 +84,7 @@ class ModifyEmpComponent extends React.Component {
         }
         if (this.isBlank(client.Bonus)) {
             errCount++;
-            document.getElementById('bonus-error').innerHTML = 'Bonus cant be blank';
+            document.getElementById('bonus-error').innerHTML = 'Bonus cant be blank or lower than 0';
         }
         if (this.isBlank(client.Birthday)) {
             errCount++;
