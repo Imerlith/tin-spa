@@ -4,6 +4,14 @@ const db = require('../config/database');
 const Client = require('../models/Client');
 var mysql = require('mysql2')
 
+function validate(client) {
+    return client.First_Name == '' ||
+            client.Last_Name == '' ||
+            client.Birthday == null ||
+            client.Last_Visit_Date == null ||
+            client.Favourite_Game == '';
+}
+
 router.get('/', (req, res) => {
     Client.findAll()
         .then(clients => {
@@ -16,6 +24,10 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const newClient = req.body;
+    if (validate(newClient)) {
+        res.sendStatus(400);
+        return;
+    }
     db.sync()
         .then(() => Client.create({
             First_Name: newClient.First_Name,
@@ -72,6 +84,10 @@ function deleteClientsFromSession(clientID) {
 
 router.patch('/', (req, res) => {
     const updatedClient = req.body;
+    if (validate(updatedClient)) {
+        res.sendStatus(400);
+        return;
+    }
     Client.update({
         First_Name: updatedClient.First_Name,
         Last_Name: updatedClient.Last_Name,
