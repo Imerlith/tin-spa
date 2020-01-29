@@ -57,16 +57,44 @@ class ModifyEmpComponent extends React.Component {
 
     isValid(emp) {
         console.log('validation start');
+        this.resetErrors();
         return !(
             this.isEmptyOrNull(emp)
             || emp.bonus < 0
         );
     }
 
-    isEmptyOrNull(emp) {
-        return this.isBlank(emp.First_Name) || this.isBlank(emp.Last_Name)
-            || this.isBlank(emp.Bonus) || this.isBlank(emp.Birthday)
-            || this.isBlank(emp.Contract_type);
+    resetErrors() {
+        document.getElementById('fname-error').innerHTML = '';
+        document.getElementById('lname-error').innerHTML = '';
+        document.getElementById('bonus-error').innerHTML = '';
+        document.getElementById('birthday-error').innerHTML = '';
+        document.getElementById('ct-error').innerHTML = '';
+    }
+
+    isEmptyOrNull(client) {
+        let errCount = 0;
+        if (this.isBlank(client.First_Name)) {
+            errCount++;
+            document.getElementById('fname-error').innerHTML = 'First Name cant be blank';
+        }
+        if (this.isBlank(client.Last_Name)) {
+            errCount++;
+            document.getElementById('lname-error').innerHTML = 'Last Name cant be blank';
+        }
+        if (this.isBlank(client.Bonus)) {
+            errCount++;
+            document.getElementById('bonus-error').innerHTML = 'Bonus cant be blank';
+        }
+        if (this.isBlank(client.Birthday)) {
+            errCount++;
+            document.getElementById('birthday-error').innerHTML = 'Birthday cant be blank';
+        }
+        if (this.isBlank(client.Contract_type)) {
+            errCount++;
+            document.getElementById('ct-error').innerHTML = 'Contract type game cant be blank';
+        }
+        return errCount > 0;
 
     }
 
@@ -161,6 +189,11 @@ class ModifyEmpComponent extends React.Component {
                     <input id='empBonus' value={this.state.emp.Bonus} type="number" onChange={this.handleFormBonus}/>
                     <input id='empBirthday' value={this.state.emp.Birthday} type="date" onChange={this.handleFormBirthday}/>
                     <input id='empCT' value={this.state.emp.Contract_type} type="text" onChange={this.handleFormCT}/>
+                    <div className='merror' id='fname-error'></div>
+                    <div className='merror' id='lname-error'></div>
+                    <div className='merror' id='bonus-error'></div>
+                    <div className='merror' id='birthday-error'></div>
+                    <div className='merror' id='ct-error'></div>
                     <div className='a-button-container'>
                         <button className='a-button' onClick={this.onAcceptClick}>Accept</button>
                     </div>
