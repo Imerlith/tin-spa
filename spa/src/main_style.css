@@ -280,3 +280,7 @@ footer {
     font-size: 0.7rem;
     color: red;
 }
+
+.modify-session-container form .merror {
+    grid-row: 3;
+}
